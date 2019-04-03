@@ -12,7 +12,7 @@ public class StudentDashboard  {
 
 	JLabel selectQuizName = new JLabel("Select Quiz"); 
 
-
+	//Create Student dashboard
 	public StudentDashboard() {
 		panel.setLayout(new GridLayout(4,1,2,30));
 		panel.add(pageName);
