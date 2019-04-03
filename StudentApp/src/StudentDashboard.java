@@ -2,6 +2,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * StudentDashboard will display the quizzes to select 
+ * and start the quiz
+ * @author appy
+ *
+ */
 public class StudentDashboard  {
 	JFrame frame = new JFrame("Quiz Application");
 	JPanel panel = new JPanel();
@@ -9,10 +15,9 @@ public class StudentDashboard  {
 	JComboBox comboBox= new JComboBox(quizzes);
 	JButton button = new JButton("Take Quiz");
 	JLabel pageName = new JLabel("Student Dashboard");
-
 	JLabel selectQuizName = new JLabel("Select Quiz"); 
 
-	//Create Student dashboard
+
 	public StudentDashboard() {
 		panel.setLayout(new GridLayout(4,1,2,30));
 		panel.add(pageName);
