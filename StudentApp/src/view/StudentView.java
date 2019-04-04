@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
 public class StudentView {
 
 	public static void main(String[] args) {
-		new StudentDashBoard();
+		new  StudentDashboard();
 	}
 
 }
