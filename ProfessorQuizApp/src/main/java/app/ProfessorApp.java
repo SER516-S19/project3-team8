@@ -1,8 +1,8 @@
-package team8.ProfessorQuizApp;
+package app;
 
 import javax.swing.SwingUtilities;
 
-import controller.DashboardController;
+import controller.ProfessorController;
 
 
 /**
@@ -11,13 +11,13 @@ import controller.DashboardController;
  * @version 0.0.1
  *
  */
-public class App {
+public class ProfessorApp {
 	public static void main( String[] args ) {
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new DashboardController();
+					new ProfessorController();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
