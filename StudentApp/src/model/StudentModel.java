@@ -26,6 +26,7 @@ public class StudentModel {
 	private JSONArray questions;
 	private boolean isFinished;
 	private boolean quit = false;
+	private int index = 0;
 	/**
 	 * Constructor readsFile and sets up questions array
 	 * @param filePath needs Absolute file path
@@ -81,7 +82,7 @@ public class StudentModel {
 	 * @param index current position
 	 * @return next position
 	 * */
-	public int nextIndex(int index){
+	public int nextIndex(){
 		return index + 1;
 	}
 	/**
@@ -103,12 +104,12 @@ public class StudentModel {
 	 * @param index position of the question displayed in the list. 
 	 * @return isLast 
 	 * */
-	public boolean checkIsLast(int index) {
-		boolean isLast = false;
-		if(index == questions.size()-1) {
-			isLast = true;
+	public boolean checkIsNextToLast(int index) {
+		boolean isNextToLast = false;
+		if(index == questions.size()-2) {
+			isNextToLast = true;
 		}
-		return isLast;
+		return isNextToLast;
 	}
 	
 	/**

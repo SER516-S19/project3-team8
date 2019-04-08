@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import model.StudentModel;
 import view.QuitPanel;
-import view.QuizPanel;
+import view.NextPanel;
 
 
 /**
@@ -13,11 +13,11 @@ import view.QuizPanel;
  * 
  * */
 public class StudentController {
-	private QuizPanel quizView;
+	private NextPanel quizView;
 	private StudentModel zeModel;
 	private QuitPanel quitView;
 	
-	public StudentController(QuizPanel View, StudentModel Model, QuitPanel View2) {
+	public StudentController(NextPanel View, StudentModel Model, QuitPanel View2) {
 			quizView = View;
 			zeModel = Model;
 			quitView = View2;
@@ -31,10 +31,12 @@ public class StudentController {
 		public void actionPerformed(ActionEvent event) {
 			try {
 				int index = quizView.getIndex();
-				if(zeModel.checkIsLast(index)) {
+				if(zeModel.checkIsNextToLast(index)) {
+					//CheckIfCorrect
 					//Enter code to change last button to submit button.
 				}else {
-					quizView.setNextIndex(zeModel.nextIndex(index));
+					//checkIfCorrect Method from StudentView goes here
+					zeModel.nextIndex();
 				}
 			}catch(NumberFormatException ex) {
 				System.out.println("Index did not return an integer value");

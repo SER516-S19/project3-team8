@@ -19,13 +19,13 @@ public class StudentView {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);
 				
-				QuizPanel quizPanel = new QuizPanel();
-				frame.add(quizPanel);
+				NextPanel nextPanel = new NextPanel();
+				frame.add(nextPanel);
 				
 				QuitPanel giveUp = new QuitPanel();
 				StudentModel model = new StudentModel("");
 				
-				StudentController control = new StudentController(quizPanel,model,giveUp);
+				StudentController control = new StudentController(nextPanel,model,giveUp);
 			}
 		});
 		
