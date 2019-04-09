@@ -7,25 +7,28 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 import model.StudentModel;
 import view.StudentDashboard;
+import view.StudentView;
 
 /**
  * StudentController which connects the StudentModel and 
  * StudentDashboard to display the Quiz view
  * @author appy
- * @version 1.0
+ * @version 1.1
  *
  */
 
 public class StudentController {
-
-	 private StudentModel studentModel;
+	 private StudentView quizView;
+	 private StudentModel quizModel;
 	 private StudentDashboard studentDashBoard;
 	 public static String currentFilePath;
 	 
-	  public StudentController(StudentModel studentModel,StudentDashboard studentDashBoard) {
-		  this.studentModel = studentModel;
-		  this.studentDashBoard = studentDashBoard;
+	  public StudentController(StudentModel studentModel,StudentView studentView) {
+		  quizModel = studentModel;
+		  quizView = studentView;
+		  studentDashBoard = studentView.getStudenDashboard(); 
 		  studentDashBoard.addLoadQuizListener(new LoadQuizListener());
+		  studentDashBoard.addTakeQuizListener(new TakeQuizListener());
 	  }
 	  class LoadQuizListener implements ActionListener{
 			@Override
@@ -36,10 +39,20 @@ public class StudentController {
 						File selectedFile = fileChooser.getSelectedFile();
 						System.out.println("inside actionlistener"+selectedFile.getAbsolutePath());
 						currentFilePath = selectedFile.getAbsolutePath();
+						quizModel.setFilePath(currentFilePath);
 					}
 				
 				}
 			}
+	  class TakeQuizListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//quizModel.setJSONArray(quizModel.getFilePath());
+			System.out.println(quizModel.getFilePath());
+			
+		}
+		  
+	  }
 	  }
 
 	  

@@ -35,7 +35,10 @@ public class StudentDashboard extends JPanel{
 	public void addLoadQuizListener(ActionListener listenForClick) {
 		loadQuiz.addActionListener(listenForClick);
 	}
-
+	public void addTakeQuizListener(ActionListener loadquizPage) {
+		takeQuiz.addActionListener(loadquizPage);
+	}
+	
 	
 
 }

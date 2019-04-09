@@ -15,7 +15,6 @@ import view.StudentDashboard;
  */
 
 public class StudentModel {
-	
 	private String filePath;
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;

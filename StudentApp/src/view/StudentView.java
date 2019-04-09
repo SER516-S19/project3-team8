@@ -12,23 +12,17 @@ import model.StudentModel;
  * @version 1.0
  *
  */
-public class StudentView {
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				StudentModel studentModel = new StudentModel();
-				StudentDashboard studentDashboard = new StudentDashboard();
-				StudentController studentController = new StudentController(studentModel,studentDashboard);
-				System.out.println(studentModel.getFilePath());
-				JFrame frame = new JFrame("StudentApp");
-				frame.setSize(500,400);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.add(studentDashboard);
-				frame.setVisible(true);
-			}
-		});
-		
-
+public class StudentView extends JFrame{
+	private StudentDashboard  studenDashboard= new StudentDashboard();
+	public StudentDashboard getStudenDashboard() {
+		return studenDashboard;
 	}
-
+	StudentView(){
+		this.setSize(500,400);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(studenDashboard);
+		this.setVisible(true);
+	}
+	
 }
+
