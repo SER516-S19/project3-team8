@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.StudentModel;
-import view.QuitPanel;
 import view.NextPanel;
+import view.QuitPanel;
+import view.StudentView;
+;
 
 
 /**
@@ -13,30 +15,33 @@ import view.NextPanel;
  * 
  * */
 public class StudentController {
-	private NextPanel quizView;
-	private StudentModel zeModel;
-	private QuitPanel quitView;
+	private StudentView quizView;
+	private StudentModel quizModel;
+	private NextPanel nextPanel;
+	private QuitPanel quitPanel;
 	
-	public StudentController(NextPanel View, StudentModel Model, QuitPanel View2) {
-			quizView = View;
-			zeModel = Model;
-			quitView = View2;
+	public StudentController(StudentModel studentModel, StudentView studentView) {
+			quizView = studentView;
+			quizModel = studentModel;
 			
-			quizView.addNextListener(new NextListener());
-			quizView.addGiveUpListener(new GiveUpListener());
+			nextPanel = quizView.getNextPanel();
+			nextPanel.addNextListener(new NextListener());
+			nextPanel.addGiveUpListener(new GiveUpListener());
+			quitPanel = quizView.getQuitPanel();
+			
 	}
 	class NextListener implements ActionListener{
 
 		
 		public void actionPerformed(ActionEvent event) {
 			try {
-				int index = quizView.getIndex();
-				if(zeModel.checkIsNextToLast(index)) {
+				int index = nextPanel.getIndex();
+				if(quizModel.checkIsNextToLast(index)) {
 					//CheckIfCorrect
 					//Enter code to change last button to submit button.
 				}else {
 					//checkIfCorrect Method from StudentView goes here
-					zeModel.nextIndex();
+					quizModel.nextIndex();
 				}
 			}catch(NumberFormatException ex) {
 				System.out.println("Index did not return an integer value");
@@ -49,10 +54,13 @@ public class StudentController {
 	class GiveUpListener implements ActionListener{	
 		public void actionPerformed(ActionEvent event) {
 			try {
-				boolean quit = zeModel.hasGivenUp();
+				System.out.println("ActionListener GiveUp");
+				boolean quit = quizModel.hasGivenUp();
 				if(quit) {
-					quizView.setVisible(false);
-					quitView.setVisible(true);
+					//change current panel and add a new one.
+					quizView.getContentPane().removeAll();
+					quizView.getContentPane().add(quitPanel);
+					quizView.revalidate();
 				}
 				
 			}catch(Exception error){

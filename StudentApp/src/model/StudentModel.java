@@ -27,11 +27,15 @@ public class StudentModel {
 	private boolean isFinished;
 	private boolean quit = false;
 	private int index = 0;
+	
+	
+	
 	/**
-	 * Constructor readsFile and sets up questions array
-	 * @param filePath needs Absolute file path
+	 * 
+	 * Sets the questions JSON array with the questions in the given quiz file.
+	 * @param filePath path of file selected
 	 * */
-	public StudentModel(String filePath) {	
+	public void setJsonArray(String filePath) {
 		try {
 			
 			JSONParser parser = new JSONParser();
@@ -51,7 +55,6 @@ public class StudentModel {
 			ex.printStackTrace();
 			System.exit(0);
 		}
-		
 	}
 	/**
 	 * getter for questions in quiz.
