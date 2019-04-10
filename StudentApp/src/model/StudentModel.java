@@ -81,12 +81,20 @@ public class StudentModel {
 	
 	/**
 	 * 
+	 * Returns the current value of the array
+	 * @param index current position
+	 * @return current position
+	 * */
+	public int getIndex(){
+		return index;
+	}/**
+	 * 
 	 * Returns the next value of the array
 	 * @param index current position
 	 * @return next position
 	 * */
 	public int nextIndex(){
-		return index + 1;
+		return ++index;
 	}
 	/**
 	 * Checks if student is finished with quiz.
