@@ -12,14 +12,9 @@ import javax.swing.GroupLayout.Alignment;
 
 public class DashboardPanel extends JPanel{
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	JButton createQuizButton;
 	JButton editQuizButton;
-	
 	
 	public DashboardPanel() 
 	{
