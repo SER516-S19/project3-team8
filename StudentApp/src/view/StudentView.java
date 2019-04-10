@@ -1,28 +1,42 @@
 package view;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import controller.StudentController;
+import model.StudentModel;
 
 /**
- * 
- * 
- * */
+ * StudentView which will take data from model and manipluates
+ * in the StudentController and display here on StudentDashboard
+ * @author appy
+ * @author Aditya
+ * @version 1.0
+ *
+ */
+
 @SuppressWarnings("serial")
 public class StudentView extends JFrame{
-				private NextPanel nextPanel = new NextPanel();
-				private QuitPanel quitPanel = new QuitPanel();
-				StudentView(){
-					this.setSize(500,400);
-					this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					
-					this.add(nextPanel);
-					this.setVisible(true);
-				}	
-				
-				public NextPanel getNextPanel() {
+	private StudentDashboard  studenDashboard= new StudentDashboard();
+	private NextPanel nextPanel = new NextPanel();
+	private QuitPanel quitPanel = new QuitPanel();
+  
+  public StudentDashboard getStudenDashboard() {
+		return studenDashboard;
+	      }
+  
+  public NextPanel getNextPanel() {
 					return nextPanel;
-				}
+	      }
 				public QuitPanel getQuitPanel() {
 					return quitPanel;
 				}
+
+	
+  StudentView(){
+		this.setSize(500,400);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(studenDashboard);
+		this.setVisible(true);
+	}
+	
 }
-		

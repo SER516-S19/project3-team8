@@ -1,0 +1,24 @@
+{
+  "questions": [
+    {
+      "title": "What is the simplest model of software development paradigm?",
+      "options": [
+        "Spiral model",
+        "Iterative model",
+        "V-Model",
+        "Waterfall Model"
+      ],
+      "correctanswer":"Spiral model"
+    },
+    {
+      "title": "Which model is not suitable for large software projects but good onefor learning and experimenting?",
+      "options": [
+        "Spiral model",
+        "Iterative model",
+        "Big Bang model",
+        "Waterfall model"
+      ],
+      "correctanswer":"Iterative model"
+   }
+ ]
+}

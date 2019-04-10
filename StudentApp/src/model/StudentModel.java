@@ -1,36 +1,44 @@
 package model;
 
-
-
+import java.awt.event.ActionEvent;
+import java.io.File;
+import controller.StudentController;
+import view.StudentDashboard;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-
-
 
 /**
  * The Questions class divides the arrayList of questions present in the 
  * file and displays it in the front end.
  * 
  * @author Aditya Samant
+ * @author appy
  * @date 4/6/2019
  * @since 4/3/2019
  * */
+
 public class StudentModel {
+  
 	private JSONArray questions;
 	private boolean isFinished;
 	private boolean quit = false;
 	private int index = 0;
+  private String filePath;
 	
+  public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
 	
-	
-	/**
+  public String getFilePath() {
+		return StudentController.currentFilePath;
+	}
+  
+  /**
 	 * 
 	 * Sets the questions JSON array with the questions in the given quiz file.
 	 * @param filePath path of file selected
@@ -56,7 +64,8 @@ public class StudentModel {
 			System.exit(0);
 		}
 	}
-	/**
+  
+  /**
 	 * getter for questions in quiz.
 	 * @return questions
 	 * */
