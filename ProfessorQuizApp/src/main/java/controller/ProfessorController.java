@@ -5,11 +5,11 @@ import view.EditQuizPanel;
 import view.ProfessorView;
 import view.SaveQuizPanel;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
 import model.Question;
 import model.Quiz;
 
@@ -20,9 +20,6 @@ public class ProfessorController {
 	CreateQuizPanel createQuizPanel;
 	EditQuizPanel editQuizPanel;
 	SaveQuizPanel saveQuizPanel;
-	
-	
-	
 	
 	public ProfessorController() {
 		view = new ProfessorView();
@@ -53,10 +50,24 @@ public class ProfessorController {
 	private void saveQuizButtonClicked() {
 		//write logic for json
 		Quiz quiz = TestSetupData();
-		System.out.print(generateJsonString(quiz));
+		String quizFileName = "quiz_file_name";
+		saveJSONFile(quizFileName,generateJsonString(quiz));
+		setDashboardView();
 	}
 	
 	
+	private void saveJSONFile(String quizFileName, JSONObject jsonString) {
+		try {
+			FileWriter file = new FileWriter(quizFileName+".json");
+			file.write(jsonString.toJSONString());
+			System.out.println("Successfully Copied JSON Object to File...");
+			System.out.println("\nJSON Object: " + jsonString);
+			file.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	protected static JSONObject generateJsonString(Quiz quiz) {
 
