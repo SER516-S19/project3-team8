@@ -1,7 +1,7 @@
 package view;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-
 import controller.StudentController;
 import model.StudentModel;
 
@@ -9,20 +9,35 @@ import model.StudentModel;
  * StudentView which will take data from model and manipluates
  * in the StudentController and display here on StudentDashboard
  * @author appy
+ * @author Aditya
  * @version 1.0
  *
  */
+
+@SuppressWarnings("serial")
 public class StudentView extends JFrame{
 	private StudentDashboard  studenDashboard= new StudentDashboard();
-	public StudentDashboard getStudenDashboard() {
+	private NextPanel nextPanel = new NextPanel();
+	private QuitPanel quitPanel = new QuitPanel();
+  
+  public StudentDashboard getStudenDashboard() {
 		return studenDashboard;
-	}
-	StudentView(){
+	      }
+  
+  public NextPanel getNextPanel() {
+					return nextPanel;
+	      }
+				public QuitPanel getQuitPanel() {
+					return quitPanel;
+				}
+
+	
+  StudentView(){
 		this.setSize(500,400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(studenDashboard);
+    this.add(nextPanel);
 		this.setVisible(true);
 	}
 	
 }
-
