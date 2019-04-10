@@ -26,6 +26,7 @@ public class StudentController {
 	 private QuitPanel quitPanel;
 	 private StudentDashboard studentDashBoard;
 	 public static String currentFilePath;
+	 private ShowQuestionsPanel showQuestionsPanel;
 	 
 	  public StudentController(StudentModel studentModel,StudentView studentView) {
 		  quizModel = studentModel;
@@ -57,7 +58,7 @@ public class StudentController {
 		public void actionPerformed(ActionEvent e) {
 			//quizModel.setJSONArray(quizModel.getFilePath());
 			System.out.println(quizModel.getFilePath());
-			
+			showQuestionsPanel = new ShowQuestionsPanel();
 		}
 		  
 	  }
