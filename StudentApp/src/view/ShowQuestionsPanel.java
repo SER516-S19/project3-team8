@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -21,8 +22,8 @@ public class ShowQuestionsPanel extends JPanel {
 	private javax.swing.JLabel questionLabel;
 
 	/**
-	* Creates new form ShowQuestionsPanel
-	*/
+	 * Creates a new panel to display the questions and their options.
+	 */
 	public ShowQuestionsPanel() {
 		optionRadioButton1 = new JRadioButton();
 		optionRadioButton2 = new JRadioButton();
@@ -46,8 +47,12 @@ public class ShowQuestionsPanel extends JPanel {
 		optionRadioButton3.setText(((JSONObject)options.get(2)).toString());
 		optionRadioButton4.setText(((JSONObject)options.get(3)).toString());
 	}
-
-	private void optionRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+	
+	/**
+	 * Unselects all other radio-buttons when Option 1 is selected
+	 * @param event Selection of optionRadioButton1
+	 */
+	private void optionRadioButton1Selected(ActionEvent event) {
 		if(optionRadioButton1.isSelected())
 		{
 			optionRadioButton2.setSelected(false);
@@ -56,7 +61,11 @@ public class ShowQuestionsPanel extends JPanel {
 		}
 	}
 
-	private void optionRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+	/**
+	 * Unselects all other radio-buttons when Option 2 is selected
+	 * @param event Selection of optionRadioButton2
+	 */
+	private void optionRadioButton2Selected(ActionEvent event) {
 		if(optionRadioButton2.isSelected())
 		{
 			optionRadioButton1.setSelected(false);
@@ -65,7 +74,11 @@ public class ShowQuestionsPanel extends JPanel {
 		}
 	}
 
-	private void optionRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+	/**
+	 * Unselects all other radio-buttons when Option 3 is selected
+	 * @param event Selection of optionRadioButton3
+	 */
+	private void optionRadioButton3Selected(ActionEvent event) {
 		if(optionRadioButton3.isSelected())
 		{
 			optionRadioButton1.setSelected(false);
@@ -74,7 +87,11 @@ public class ShowQuestionsPanel extends JPanel {
 		}
 	}
 
-	private void optionRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+	/**
+	 * Unselects all other radio-buttons when Option 4 is selected
+	 * @param event Selection of optionRadioButton4
+	 */
+	private void optionRadioButton4ActionPerformed(ActionEvent event) {
 		if(optionRadioButton4.isSelected())
 		{
 			optionRadioButton1.setSelected(false);

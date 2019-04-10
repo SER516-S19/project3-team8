@@ -87,7 +87,9 @@ public class StudentModel {
 	 * */
 	public int getIndex(){
 		return index;
-	}/**
+	}
+	
+	/**
 	 * 
 	 * Returns the next value of the array
 	 * @param index current position
