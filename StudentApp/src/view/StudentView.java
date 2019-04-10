@@ -1,21 +1,28 @@
 package view;
+
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
-public class StudentView {
-
-	public static void main(String[] args) {
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				JFrame frame = new JFrame("StudentApp");
-				frame.setSize(500,400);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setVisible(true);
-			}
-		});
-
-
-	}
-
+/**
+ * 
+ * 
+ * */
+@SuppressWarnings("serial")
+public class StudentView extends JFrame{
+				private NextPanel nextPanel = new NextPanel();
+				private QuitPanel quitPanel = new QuitPanel();
+				StudentView(){
+					this.setSize(500,400);
+					this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					
+					this.add(nextPanel);
+					this.setVisible(true);
+				}	
+				
+				public NextPanel getNextPanel() {
+					return nextPanel;
+				}
+				public QuitPanel getQuitPanel() {
+					return quitPanel;
+				}
 }
+		
