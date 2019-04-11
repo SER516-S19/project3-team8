@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -28,6 +29,7 @@ public class ShowQuestionsPanel extends JPanel {
 	 * Creates a new panel to display the questions and their options.
 	 */
 	public ShowQuestionsPanel() {
+		this.setLayout(new GridLayout(5, 1, 2, 10));
 		optionRadioButton1 = new JRadioButton();
 		optionRadioButton2 = new JRadioButton();
 		optionRadioButton3 = new JRadioButton();

@@ -1,10 +1,12 @@
 package controller;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
+
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -83,7 +85,9 @@ public class StudentController {
 				System.out.println("CorrectAns:" + correctAnswer.toString());
 				quizModel.setCorrectAnswer(correctAnswer.toString());
 				quizView.getContentPane().removeAll();
+				quizView.setLayout(new GridLayout(2, 1));
 				quizView.getContentPane().add(questionsPanel);
+				quizView.getContentPane().add(nextPanel);
 				quizView.revalidate();
 			} catch(NullPointerException exc) {
 				exc.printStackTrace();
