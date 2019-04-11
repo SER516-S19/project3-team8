@@ -5,16 +5,22 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import model.StudentModel;
 import view.StudentDashboard;
 import view.StudentView;
 import view.NextPanel;
 import view.QuitPanel;
+import view.ShowQuestionsPanel;
 
 /**
  * StudentController which connects the StudentModel and 
  * StudentDashboard to display the Quiz view
  * @author appy
+ * @author Jainish
  * @version 1.1
  *
  */
@@ -22,22 +28,28 @@ import view.QuitPanel;
 public class StudentController {
 	 private StudentView quizView;
 	 private StudentModel quizModel;
-   private NextPanel nextPanel;
+     private NextPanel nextPanel;
 	 private QuitPanel quitPanel;
 	 private StudentDashboard studentDashBoard;
-	 public static String currentFilePath;
+	 private ShowQuestionsPanel questionsPanel;
+	 private String currentFilePath;
 	 private ShowQuestionsPanel showQuestionsPanel;
 	 
 	  public StudentController(StudentModel studentModel,StudentView studentView) {
 		  quizModel = studentModel;
 		  quizView = studentView;
-		  studentDashBoard = studentView.getStudenDashboard(); 
+		  
+		  studentDashBoard = quizView.getStudenDashboard();
 		  studentDashBoard.addLoadQuizListener(new LoadQuizListener());
 		  studentDashBoard.addTakeQuizListener(new TakeQuizListener());
-			nextPanel = quizView.getNextPanel();
-			nextPanel.addNextListener(new NextListener());
-			nextPanel.addGiveUpListener(new GiveUpListener());
-			quitPanel = quizView.getQuitPanel();
+		  
+		  questionsPanel = quizView.getShowQuestionsPanel();
+		  
+		  nextPanel = quizView.getNextPanel();
+		  nextPanel.addNextListener(new NextListener());
+		  
+		  nextPanel.addGiveUpListener(new GiveUpListener());
+		  quitPanel = quizView.getQuitPanel();
 	  }
 	  class LoadQuizListener implements ActionListener{
 			@Override
@@ -46,7 +58,7 @@ public class StudentController {
 					int returnValue = fileChooser.showOpenDialog(null);
 					if(returnValue == JFileChooser.APPROVE_OPTION) {
 						File selectedFile = fileChooser.getSelectedFile();
-						System.out.println("inside actionlistener"+selectedFile.getAbsolutePath());
+	
 						currentFilePath = selectedFile.getAbsolutePath();
 						quizModel.setFilePath(currentFilePath);
 					}
@@ -56,9 +68,26 @@ public class StudentController {
 	  class TakeQuizListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//quizModel.setJSONArray(quizModel.getFilePath());
-			System.out.println(quizModel.getFilePath());
-			showQuestionsPanel = new ShowQuestionsPanel();
+			try {
+				String filePath = quizModel.getFilePath();
+				quizModel.setJsonArray(filePath);
+				JSONArray questions = quizModel.getQuestions();
+				int index = quizModel.getIndex();
+				
+				JSONObject question = (JSONObject) questions.get(index);
+				String title = question.get("title").toString();
+				JSONArray options = (JSONArray) question.get("options");
+				String correctAnswer = question.get("correctAnswer").toString();
+				questionsPanel.setQuestionLabel(title);
+				questionsPanel.setOptionRadioButton(options);
+				System.out.println("CorrectAns:" + correctAnswer.toString());
+				quizModel.setCorrectAnswer(correctAnswer.toString());
+				quizView.getContentPane().removeAll();
+				quizView.getContentPane().add(questionsPanel);
+				quizView.revalidate();
+			} catch(NullPointerException exc) {
+				exc.printStackTrace();
+			}
 		}
 		  
 	  }
@@ -87,7 +116,6 @@ public class StudentController {
 	class GiveUpListener implements ActionListener{	
 		public void actionPerformed(ActionEvent event) {
 			try {
-				System.out.println("ActionListener GiveUp");
 				boolean quit = quizModel.hasGivenUp();
 				if(quit) {
 					//change current panel and add a new one.
