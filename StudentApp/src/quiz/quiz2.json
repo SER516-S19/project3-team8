@@ -8,7 +8,7 @@
         "V-Model",
         "Waterfall Model"
       ],
-      "correctAnswer":"Spiral model"
+      "correctanswer":"Spiral model"
     },
     {
       "title": "Which model is not suitable for large software projects but good onefor learning and experimenting?",
@@ -18,7 +18,7 @@
         "Big Bang model",
         "Waterfall model"
       ],
-      "correctAnswer":"Iterative model"
+      "correctanswer":"Iterative model"
    }
  ]
 }

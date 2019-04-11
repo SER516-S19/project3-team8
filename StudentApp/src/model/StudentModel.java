@@ -84,9 +84,8 @@ public class StudentModel {
 	public boolean checkIfCorrect(int index, String selected) {
 		boolean flag = false;
 		JSONObject question  = (JSONObject) questions.get(index);
-		if(selected.equals(correctAnswer)) {
+		if(selected.equals(question.get("correctAnswer"))) {
 			questions.remove(index);
-			System.out.println("Zero: "+ questions.get(0));
 			flag = true;	
 		}
 		return flag;
