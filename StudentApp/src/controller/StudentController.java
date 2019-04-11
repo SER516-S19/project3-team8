@@ -21,51 +21,51 @@ import view.ShowQuestionsPanel;
  * StudentDashboard to display the Quiz view
  * @author appy
  * @author Jainish
+ * @author Sajith Thattazhi
  * @version 1.1
  *
  */
 
 public class StudentController {
-	 private StudentView quizView;
-	 private StudentModel quizModel;
-     private NextPanel nextPanel;
-	 private QuitPanel quitPanel;
-	 private StudentDashboard studentDashBoard;
-	 private ShowQuestionsPanel questionsPanel;
-	 private String currentFilePath;
-	 private ShowQuestionsPanel showQuestionsPanel;
-	 
-	  public StudentController(StudentModel studentModel,StudentView studentView) {
-		  quizModel = studentModel;
-		  quizView = studentView;
-		  
-		  studentDashBoard = quizView.getStudenDashboard();
-		  studentDashBoard.addLoadQuizListener(new LoadQuizListener());
-		  studentDashBoard.addTakeQuizListener(new TakeQuizListener());
-		  
-		  questionsPanel = quizView.getShowQuestionsPanel();
-		  
-		  nextPanel = quizView.getNextPanel();
-		  nextPanel.addNextListener(new NextListener());
-		  
-		  nextPanel.addGiveUpListener(new GiveUpListener());
-		  quitPanel = quizView.getQuitPanel();
-	  }
-	  class LoadQuizListener implements ActionListener{
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				 JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-					int returnValue = fileChooser.showOpenDialog(null);
-					if(returnValue == JFileChooser.APPROVE_OPTION) {
-						File selectedFile = fileChooser.getSelectedFile();
-	
-						currentFilePath = selectedFile.getAbsolutePath();
-						quizModel.setFilePath(currentFilePath);
-					}
-				
-				}
+	private StudentView quizView;
+	private StudentModel quizModel;
+	private NextPanel nextPanel;
+	private QuitPanel quitPanel;
+	private StudentDashboard studentDashBoard;
+	private ShowQuestionsPanel questionsPanel;
+	private String currentFilePath;
+
+	public StudentController(StudentModel studentModel,StudentView studentView) {
+		quizModel = studentModel;
+		quizView = studentView;
+
+		studentDashBoard = quizView.getStudenDashboard();
+		studentDashBoard.addLoadQuizListener(new LoadQuizListener());
+		studentDashBoard.addTakeQuizListener(new TakeQuizListener());
+
+		questionsPanel = quizView.getShowQuestionsPanel();
+
+		nextPanel = quizView.getNextPanel();
+		nextPanel.addNextListener(new NextListener());
+
+		nextPanel.addGiveUpListener(new GiveUpListener());
+		quitPanel = quizView.getQuitPanel();
+	}
+	class LoadQuizListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+			int returnValue = fileChooser.showOpenDialog(null);
+			if(returnValue == JFileChooser.APPROVE_OPTION) {
+				File selectedFile = fileChooser.getSelectedFile();
+
+				currentFilePath = selectedFile.getAbsolutePath();
+				quizModel.setFilePath(currentFilePath);
 			}
-	  class TakeQuizListener implements ActionListener{
+
+		}
+	}
+	class TakeQuizListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
@@ -73,7 +73,7 @@ public class StudentController {
 				quizModel.setJsonArray(filePath);
 				JSONArray questions = quizModel.getQuestions();
 				int index = quizModel.getIndex();
-				
+
 				JSONObject question = (JSONObject) questions.get(index);
 				String title = question.get("title").toString();
 				JSONArray options = (JSONArray) question.get("options");
@@ -89,12 +89,12 @@ public class StudentController {
 				exc.printStackTrace();
 			}
 		}
-		  
-	  }
+
+	}
 
 	class NextListener implements ActionListener{
 
-		
+
 		public void actionPerformed(ActionEvent event) {
 			try {
 				int index = nextPanel.getIndex();
@@ -110,9 +110,9 @@ public class StudentController {
 				System.exit(0);
 			}
 		}
-		
+
 	}
-	
+
 	class GiveUpListener implements ActionListener{	
 		public void actionPerformed(ActionEvent event) {
 			try {
@@ -122,13 +122,13 @@ public class StudentController {
 					quizView.getContentPane().removeAll();
 					quizView.getContentPane().add(quitPanel);
 					quizView.revalidate();
-				}
-				
+			}
+
 			}catch(Exception error){
 				error.printStackTrace();
 				System.exit(0);
 			}
 		}
-		
+
 	}
 }
