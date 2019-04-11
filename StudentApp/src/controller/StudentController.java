@@ -4,6 +4,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
@@ -101,13 +103,38 @@ public class StudentController {
 
 		public void actionPerformed(ActionEvent event) {
 			try {
-				int index = nextPanel.getIndex();
+				int index = quizModel.getIndex();
 				if(quizModel.checkIsNextToLast(index)) {
 					//CheckIfCorrect
 					//Enter code to change last button to submit button.
 				}else {
 					//checkIfCorrect Method from StudentView goes here
-					quizModel.nextIndex();
+					ButtonGroup group = questionsPanel.getButtonGroup();
+					String selected = group.getSelection().getActionCommand();
+					
+					boolean isIncorrect = !(quizModel.checkIfCorrect(index, selected));
+					System.out.println("Incorrect:" + isIncorrect);
+					if(isIncorrect) {
+						System.out.println("IsIncorrect");
+						index = quizModel.nextIndex();
+					}
+					group.clearSelection();
+					 quizView.getContentPane().removeAll();
+					//Reset all info.
+					JSONArray questions = quizModel.getQuestions();
+					JSONObject question = (JSONObject) questions.get(index);
+					String title = question.get("title").toString();
+					JSONArray options = (JSONArray) question.get("options");
+					String correctAnswer = question.get("correctAnswer").toString();
+					questionsPanel.setQuestionLabel(title);
+					questionsPanel.setOptionRadioButton(options);
+					System.out.println("CorrectAns:" + correctAnswer.toString());
+					quizModel.setCorrectAnswer(correctAnswer.toString());
+					quizView.repaint();
+					quizView.setLayout(new GridLayout(2, 1));
+					quizView.getContentPane().add(questionsPanel);
+					quizView.getContentPane().add(nextPanel);
+					quizView.revalidate();
 				}
 			}catch(NumberFormatException ex) {
 				System.out.println("Index did not return an integer value");
@@ -124,6 +151,7 @@ public class StudentController {
 				if(quit) {
 					//change current panel and add a new one.
 					quizView.getContentPane().removeAll();
+					quizView.repaint();
 					quizView.getContentPane().add(quitPanel);
 					quizView.revalidate();
 			}
