@@ -24,6 +24,7 @@ public class ShowQuestionsPanel extends JPanel {
 	JRadioButton optionRadioButton3;
 	JRadioButton optionRadioButton4;
 	JLabel questionLabel;
+	ButtonGroup group;
 
 	/**
 	 * Creates a new panel to display the questions and their options.
@@ -48,11 +49,18 @@ public class ShowQuestionsPanel extends JPanel {
 		String option2 = optionsArray.get(1).toString();
 		String option3 = optionsArray.get(2).toString();
 		String option4 = optionsArray.get(3).toString();
+		
 		this.optionRadioButton1.setText(option1);
 		this.optionRadioButton2.setText(option2);
 		this.optionRadioButton3.setText(option3);
 		this.optionRadioButton4.setText(option4);
-		ButtonGroup group = new ButtonGroup();
+		
+		this.optionRadioButton1.setActionCommand(option1);
+		this.optionRadioButton2.setActionCommand(option2);
+		this.optionRadioButton3.setActionCommand(option3);
+		this.optionRadioButton4.setActionCommand(option4);
+		
+		group = new ButtonGroup();
 		group.add(optionRadioButton1);
 		group.add(optionRadioButton2);
 		group.add(optionRadioButton3);
@@ -64,23 +72,11 @@ public class ShowQuestionsPanel extends JPanel {
 		//String title = questionLabel.toString();
 		this.questionLabel.setText(questionLabel);
 	}
-
-	public javax.swing.JRadioButton getOptionRadioButton1() {
-		return optionRadioButton1;
+	
+	public javax.swing.ButtonGroup getButtonGroup(){
+		return group;
 	}
-
-	public javax.swing.JRadioButton getOptionRadioButton2() {
-		return optionRadioButton2;
-	}
-
-	public javax.swing.JRadioButton getOptionRadioButton3() {
-		return optionRadioButton3;
-	}
-
-	public javax.swing.JRadioButton getOptionRadioButton4() {
-		return optionRadioButton4;
-	}
-
+	
 	public javax.swing.JLabel getQuestionLabel() {
 		return questionLabel;
 	}
