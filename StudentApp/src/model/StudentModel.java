@@ -17,6 +17,7 @@ import org.json.simple.parser.ParseException;
  * file and displays it in the front end.
  * 
  * @author Aditya Samant
+ * @author Jainish
  * @author appy
  * @date 4/6/2019
  * @since 4/3/2019
@@ -28,28 +29,30 @@ public class StudentModel {
 	private boolean isFinished;
 	private boolean quit = false;
 	private int index = 0;
-  private String filePath;
+	private String filePath;
+	private String correctAnswer;
 	
-  public void setFilePath(String filePath) {
+	public void setFilePath(String filePath) {
 		this.filePath = filePath;
-	}
+		}
 	
-  public String getFilePath() {
-		return StudentController.currentFilePath;
-	}
+  	public String getFilePath() {
+		return filePath;
+  		}
   
-  /**
-	 * 
-	 * Sets the questions JSON array with the questions in the given quiz file.
-	 * @param filePath path of file selected
-	 * */
+  /* 
+   * 
+   * Sets the questions JSON array with the questions in the given quiz file.
+   *  @param filePath path of file selected
+   *  
+   *   */
 	public void setJsonArray(String filePath) {
 		try {
 			
 			JSONParser parser = new JSONParser();
 			JSONObject json = (JSONObject) parser.parse(new FileReader(filePath));
 			questions= (JSONArray) json.get("questions");
-				
+			System.out.println("JSONArray: " + questions);
 		}catch(FileNotFoundException e) {
 			System.out.println("File Not Found\n");
 			e.printStackTrace();
@@ -140,5 +143,13 @@ public class StudentModel {
 	 * */
 	public boolean hasGivenUp() {
 		return quit = true;
+	}
+	
+	public String getCorrectAnswer() {
+		return correctAnswer;
+	}
+	
+	public void setCorrectAnswer(String answer) {
+		correctAnswer = answer;
 	}
 }

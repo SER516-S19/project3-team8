@@ -5,14 +5,17 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import model.StudentModel;
+
 
 /**
 *
 * @author Sajith Thattazhi
+* @author Jainish
+* @author Aditya
 * @since 04/09/2019
 */
+
+@SuppressWarnings("serial")
 public class ShowQuestionsPanel extends JPanel {
 
 	private javax.swing.JRadioButton optionRadioButton1;
@@ -30,22 +33,12 @@ public class ShowQuestionsPanel extends JPanel {
 		optionRadioButton3 = new JRadioButton();
 		optionRadioButton4 = new JRadioButton();
 		questionLabel = new JLabel();
-
-		StudentModel studentModel = new StudentModel();
-		JSONArray questions = studentModel.getQuestions();
-		int index = studentModel.getIndex();
-
-		JSONObject question = (JSONObject) questions.get(index);
-		JSONObject title = (JSONObject) question.get("title");
-		JSONArray options = (JSONArray) question.get("options");
-		JSONObject correctAnswer = (JSONObject) question.get("correctAnswer");
-
-		questionLabel.setText(title.toString());
-
-		optionRadioButton1.setText(((JSONObject)options.get(0)).toString());
-		optionRadioButton2.setText(((JSONObject)options.get(1)).toString());
-		optionRadioButton3.setText(((JSONObject)options.get(2)).toString());
-		optionRadioButton4.setText(((JSONObject)options.get(3)).toString());
+		
+		this.add(questionLabel);
+		this.add(optionRadioButton1);
+		this.add(optionRadioButton2);
+		this.add(optionRadioButton3);
+		this.add(optionRadioButton4);
 	}
 	
 	/**
@@ -99,4 +92,47 @@ public class ShowQuestionsPanel extends JPanel {
 			optionRadioButton3.setSelected(false);
 		}
 	}
+
+	public void setOptionRadioButton(JSONArray optionsArray) {
+		String option1 = optionsArray.get(0).toString();
+		String option2 = optionsArray.get(1).toString();
+		String option3 = optionsArray.get(2).toString();
+		String option4 = optionsArray.get(3).toString();
+		this.optionRadioButton1.setText(option1);
+		this.optionRadioButton2.setText(option2);
+		this.optionRadioButton3.setText(option3);
+		this.optionRadioButton4.setText(option4);
+	}
+
+
+	public void setQuestionLabel(String questionLabel) {
+		//String title = questionLabel.toString();
+		this.questionLabel.setText(questionLabel);
+	}
+
+	public javax.swing.JRadioButton getOptionRadioButton1() {
+		return optionRadioButton1;
+	}
+
+	public javax.swing.JRadioButton getOptionRadioButton2() {
+		return optionRadioButton2;
+	}
+
+	public javax.swing.JRadioButton getOptionRadioButton3() {
+		return optionRadioButton3;
+	}
+
+	public javax.swing.JRadioButton getOptionRadioButton4() {
+		return optionRadioButton4;
+	}
+
+	public javax.swing.JLabel getQuestionLabel() {
+		return questionLabel;
+	}
+	
+	
+	
+
+	
+	
 }
