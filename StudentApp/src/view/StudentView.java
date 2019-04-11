@@ -45,7 +45,9 @@ public class StudentView extends JFrame{
 		this.setSize(500,400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(studenDashboard);
+		this.setTitle("Student Dashboard");
 		this.setVisible(true);
+		
 	}
 	
 }

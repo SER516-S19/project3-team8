@@ -10,7 +10,7 @@ import javax.swing.filechooser.FileSystemView;
  * StudentDashboard which displays the quiz student's
  * homepage 
  * @author appy
- * @version 1.0
+ * @version 1.1
  *
  */
 
@@ -25,12 +25,19 @@ public class StudentDashboard extends JPanel{
 	JLabel selectQuizName = new JLabel("Select Quiz"); 
 
 	
-	public StudentDashboard() {
-		this.setLayout(new GridLayout(4,1,2,10));
-		this.add(pageName);
-		this.add(selectQuizName);
-		this.add(loadQuiz);
-		this.add(takeQuiz);	
+	public StudentDashboard(){
+		selectQuizName.setFont(new Font("Georgia",Font.BOLD,24));
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints constraint = new GridBagConstraints(); 
+		constraint.gridx = 0;
+		constraint.gridy = 0;
+		this.add(selectQuizName,constraint);
+		constraint.gridx = 0;
+		constraint.gridy = 20;
+		this.add(loadQuiz,constraint);
+		constraint.gridx = 0;
+		constraint.gridy = 40;
+		this.add(takeQuiz,constraint);	
 	}
 	public void addLoadQuizListener(ActionListener listenForClick) {
 		loadQuiz.addActionListener(listenForClick);
@@ -38,9 +45,6 @@ public class StudentDashboard extends JPanel{
 	public void addTakeQuizListener(ActionListener loadquizPage) {
 		takeQuiz.addActionListener(loadquizPage);
 	}
-	
-	
-
 }
 
 
