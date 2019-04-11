@@ -10,6 +10,7 @@ import model.StudentModel;
  * in the StudentController and display here on StudentDashboard
  * @author appy
  * @author Aditya
+ * @author Jainish
  * @version 1.0
  *
  */
@@ -19,17 +20,25 @@ public class StudentView extends JFrame{
 	private StudentDashboard  studenDashboard= new StudentDashboard();
 	private NextPanel nextPanel = new NextPanel();
 	private QuitPanel quitPanel = new QuitPanel();
-  
-  public StudentDashboard getStudenDashboard() {
+	private ShowQuestionsPanel showQuestionsPanel;
+	
+	public StudentDashboard getStudenDashboard() {
 		return studenDashboard;
-	      }
+   	}
   
-  public NextPanel getNextPanel() {
-					return nextPanel;
-	      }
-				public QuitPanel getQuitPanel() {
-					return quitPanel;
-				}
+	public NextPanel getNextPanel() {
+		return nextPanel;
+   	}
+	
+	public QuitPanel getQuitPanel() {
+		return quitPanel;
+	}
+	
+	public ShowQuestionsPanel getShowQuestionsPanel() {
+		showQuestionsPanel = new ShowQuestionsPanel();
+		return showQuestionsPanel;
+	}
+	
 
 	
   StudentView(){
