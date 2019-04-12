@@ -5,11 +5,8 @@ import view.EditQuizPanel;
 import view.ProfessorView;
 import view.SaveQuizPanel;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import model.Question;
 import model.Quiz;
 import utilities.FileManager;
