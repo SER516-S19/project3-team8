@@ -12,6 +12,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import model.Question;
 import model.Quiz;
+import utilities.FileManager;
 
 public class ProfessorController {
 	
@@ -46,54 +47,17 @@ public class ProfessorController {
 		System.out.println("Next button clicked");
 	}
 
-
 	private void saveQuizButtonClicked() {
-		//write logic for json
-		Quiz quiz = TestSetupData();
-		String quizFileName = "quiz_file_name";
-		saveJSONFile(quizFileName,generateJsonString(quiz));
-		setDashboardView();
-	}
-	
-	
-	private void saveJSONFile(String quizFileName, JSONObject jsonString) {
 		try {
-			FileWriter file = new FileWriter(quizFileName+".json");
-			file.write(jsonString.toJSONString());
-			System.out.println("Successfully Copied JSON Object to File...");
-			System.out.println("\nJSON Object: " + jsonString);
-			file.close();
+			Quiz quiz = TestSetupData();
+			FileManager fm = FileManager.getInstance();
+			fm.writeFile(quiz);
+			setDashboardView();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	protected static JSONObject generateJsonString(Quiz quiz) {
-
-		JSONArray questionsJsonArray = new JSONArray();
-		ArrayList<Question> questionList = quiz.getQuestions();
-		for(Question question : questionList){
-			JSONObject questionsJsonObject = new JSONObject();
-			questionsJsonObject.put("title", question.getQuestionTitle());
-			
-			JSONArray optionsJsonArray = new JSONArray();
-			for(String option : question.getOptions()){
-				optionsJsonArray.add(option);
-			}
-			questionsJsonObject.put("options", optionsJsonArray);
-			questionsJsonObject.put("correctAnswer", question.getCorrectAnswer());
-			questionsJsonArray.add(questionsJsonObject);
-		}
-		
-		JSONObject quizJsonObject = new JSONObject();
-		quizJsonObject.put("questions",questionsJsonArray);
-		return quizJsonObject;
-		
-	}
-	
-	
-	
 	// All the methods to update the panels on the frame written below
 	private void setDashboardView() {
 		dashboardPanel = new DashboardPanel();
