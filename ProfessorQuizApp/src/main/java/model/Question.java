@@ -3,9 +3,9 @@ package model;
 import java.util.ArrayList;
 
 public class Question {
-	String title;
-	String correctAnswer;
-	ArrayList<String> options;
+	private String title;
+	private String correctAnswer;
+	private ArrayList<String> options;
 
 	public Question() {
 		super();

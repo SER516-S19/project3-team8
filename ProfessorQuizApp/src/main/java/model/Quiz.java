@@ -4,12 +4,20 @@ import java.util.ArrayList;
 
 public class Quiz {
 
-	ArrayList<Question> questions;
-
+	private String name;
+	private ArrayList<Question> questions;
 
 	public Quiz() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Quiz(ArrayList<Question> questions) {

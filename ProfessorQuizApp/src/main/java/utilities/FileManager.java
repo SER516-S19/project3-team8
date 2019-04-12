@@ -36,10 +36,8 @@ public class FileManager {
 	}
 
 	public static FileManager getInstance() {
-		// should read from a property here
 		if (__instance == null) {
 			__instance = new FileManager();
-			//			setMap(__instance.readFile());
 		}
 		return __instance;
 	}
@@ -100,7 +98,7 @@ public class FileManager {
 			bufferReader = new BufferedReader( new FileReader(fullpath));
 
 			this.quiz = new Gson().fromJson(bufferReader, Quiz.class);
-
+			this.quiz.setName(fileName);
 			System.out.println(this.quiz);
 
 			return this.quiz;
