@@ -3,26 +3,26 @@ package model;
 import java.util.ArrayList;
 
 public class Question {
-	private String title;
-	private String correctAnswer;
-	private ArrayList<String> options;
-
+	String questionTitle;
+	String correctAnswer;
+	ArrayList<String> options = new ArrayList<String>();
+	
 	public Question() {
 		super();
 	}
 
-	public Question(String title, String correctAnswer, ArrayList<String> options) {
+	public Question(String questionTitle, String correctAnswer, ArrayList<String> options) {
 		super();
-		this.title = title;
+		this.questionTitle = questionTitle;
 		this.correctAnswer = correctAnswer;
 		this.options = options;
 	}
 	
-	public String getTitle() {
-		return title;
+	public String getQuestionTitle() {
+		return questionTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setQuestionTitle(String questionTitle) {
+		this.questionTitle = questionTitle;
 	}
 	public String getCorrectAnswer() {
 		return correctAnswer;
@@ -36,6 +36,5 @@ public class Question {
 	public void setOptions(ArrayList<String> options) {
 		this.options = options;
 	}
-	
 	
 }

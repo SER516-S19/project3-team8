@@ -170,7 +170,7 @@ public class ProfessorController {
 			questionsList.add(q1);
 			questionsList.add(q2);
 			
-			quiz.setQuizName("Quiz_1");
+			quiz.setName("Quiz_1");
 			quiz.setQuestions(questionsList);
 			
 			
