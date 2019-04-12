@@ -39,8 +39,6 @@ public class StudentView extends JFrame{
 		return showQuestionsPanel;
 	}
 	
-
-	
   StudentView(){
 		this.setSize(500,400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
