@@ -12,10 +12,10 @@ import utilities.FileManager;
 
 
 /**
+ * 
  * Professor App
  * @author ishansarangi
  * @version 0.0.1
- *
  */
 public class ProfessorApp {
 	public static void main( String[] args ) {
