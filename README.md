@@ -13,9 +13,13 @@ Professor Side
 Student Side
 
 1.Aprajita thakur
+
 2.Sami Malik
+
 3.Jainish Soni - Scrum Master
+
 4.Sajith Thattazhi
+
 5.Aditya Samant - Product Owner
 
 
