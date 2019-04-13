@@ -10,6 +10,7 @@ import model.Quiz;
 import services.PanelFactory;
 import utilities.FileManager;
 import view.CreateQuizPanel;
+import view.ListQuizPanel;
 import view.PanelType;
 import view.ProfessorView;
 
@@ -42,16 +43,21 @@ public class ProfessorController {
 
 	private void setDashboardView() {
 		ActionListener createButtonListener = e -> createButtonClicked();
-		ActionListener editButtonListener = e -> editButtonClicked();
+		ActionListener editButtonListener = e -> listQuizButtonClicked();
 		ActionListener[] listeners = { createButtonListener, editButtonListener };
 		setViewForPanelType(PanelType.Dashboard, listeners);
 	}
+	
 
-	private void createButtonClicked() {	
-		ActionListener cancelButtonListener = e -> backButtonClicked();
-		ActionListener[] listeners = {cancelButtonListener};
+	private void listQuizButtonClicked() {
+		ActionListener backButtonListener = e -> setDashboardView();
+		ActionListener[] listeners = { backButtonListener };
+		setViewForPanelType(PanelType.ListQuiz, listeners);
 		
-		CreateQuizPanel panel = (CreateQuizPanel) setViewForPanelType(PanelType.CreateQuiz, listeners);
+	}
+
+	private void createButtonClicked() {				
+		CreateQuizPanel panel = (CreateQuizPanel) setViewForPanelType(PanelType.CreateQuiz, null);
 		panel.getaddQuestionButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (panel.checkEntryExists()) {

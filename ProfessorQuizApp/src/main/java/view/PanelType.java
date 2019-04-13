@@ -11,5 +11,6 @@ public enum PanelType{
 	 Dashboard,
 	 CreateQuiz,
 	 EditQuiz,
-	 SaveQuiz
+	 SaveQuiz, 
+	 ListQuiz
 }
