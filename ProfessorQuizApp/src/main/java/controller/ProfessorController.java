@@ -15,9 +15,7 @@ import view.ProfessorView;
 
 /**
  * Controller class to manage different panels
- * 
- * @author ishansarangi
- *
+ * @author ishansarangi, alshasamantaray
  */
 public class ProfessorController {
 	ProfessorView view;
@@ -49,40 +47,41 @@ public class ProfessorController {
 		setViewForPanelType(PanelType.Dashboard, listeners);
 	}
 
-	private void createButtonClicked() {
-		
-		ActionListener submitQuizButtonListener = e -> submitQuizButtonClicked();
-		ActionListener[] listeners = { submitQuizButtonListener };
+	private void createButtonClicked() {	
+		ActionListener cancelButtonListener = e -> backButtonClicked();
+		ActionListener[] listeners = {cancelButtonListener};
 		
 		CreateQuizPanel panel = (CreateQuizPanel) setViewForPanelType(PanelType.CreateQuiz, listeners);
 		panel.getaddQuestionButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (panel.checkEntryExists()) {
-					quizNAme = panel.getQuizName();
 					questionList.add(panel.getQuizQuestions());
 					panel.clearTextAndSelection();
 				}
 			}
 		});
+		panel.getSubmitQuizButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (panel.checkEntryExists()) {
+					quizNAme = panel.getQuizName();
+					questionList.add(panel.getQuizQuestions());
+					saveQuizButtonClicked();
+					}
+			}
+		});
 	}
-	
+
 	private void submitQuizButtonClicked() {
 		ActionListener saveQuizButtonListener = e -> saveQuizButtonClicked();
 		ActionListener[] listeners = { saveQuizButtonListener };
-		
+
 		setViewForPanelType(PanelType.SaveQuiz, listeners);
 	}
-	
-//	private void getQuizQuestions() {
-//		CreateQuizPanel panelView = new CreateQuizPanel();
-//		questionList.add(panelView.getQuizQuestions());
-//	}
 
 	private void editButtonClicked() {
 		ActionListener backButtonListener = e -> backButtonClicked();
 		ActionListener nextButtonListener = e -> nextButtonClicked();
 		ActionListener[] listeners = { backButtonListener, nextButtonListener };
-
 		setViewForPanelType(PanelType.EditQuiz, listeners);
 	}
 
@@ -105,41 +104,4 @@ public class ProfessorController {
 			e.printStackTrace();
 		}
 	}
-
-	// TODO: To be deleted once date is setup
-	protected static Quiz TestSetupData() {
-
-		// Question 1 details
-		Question q1 = new Question();
-		q1.setQuestionTitle("Question 1");
-		ArrayList<String> optionsQuestion1 = new ArrayList<String>();
-		optionsQuestion1.add("Question1_Option1");
-		optionsQuestion1.add("Question1_Option2");
-		optionsQuestion1.add("Question1_Option3");
-		optionsQuestion1.add("Question1_Option4");
-		q1.setOptions(optionsQuestion1);
-		q1.setCorrectAnswer("Question1_Option2");
-
-		// Question 2 details
-		Question q2 = new Question();
-		q2.setQuestionTitle("Question 2");
-		ArrayList<String> optionsQuestion2 = new ArrayList<String>();
-		optionsQuestion2.add("Question2_Option1");
-		optionsQuestion2.add("Question2_Option2");
-		optionsQuestion2.add("Question2_Option3");
-		optionsQuestion2.add("Question2_Option4");
-		q2.setOptions(optionsQuestion2);
-		q2.setCorrectAnswer("Question2_Option4");
-
-		Quiz quiz = new Quiz();
-		ArrayList<Question> questionsList = new ArrayList<Question>();
-		questionsList.add(q1);
-		questionsList.add(q2);
-
-		quiz.setName("Quiz_1");
-		quiz.setQuestions(questionsList);
-
-		return quiz;
-	}
-
 }
