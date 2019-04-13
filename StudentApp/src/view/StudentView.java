@@ -1,21 +1,62 @@
 package view;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import controller.StudentController;
+import model.StudentModel;
+import javax.swing.JOptionPane;
 
-public class StudentView {
+/**
+ * StudentView which will take data from model and manipluates
+ * in the StudentController and display here on StudentDashboard
+ * @author appy
+ * @author Aditya
+ * @author Jainish
+ * @version 1.0
+ *
+ */
 
-	public static void main(String[] args) {
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				JFrame frame = new JFrame("StudentApp");
-				frame.setSize(500,400);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setVisible(true);
-			}
-		});
-
-
+@SuppressWarnings("serial")
+public class StudentView extends JFrame{
+	private StudentDashboard  studenDashboard= new StudentDashboard();
+	private NextPanel nextPanel = new NextPanel();
+	private QuitPanel quitPanel = new QuitPanel();
+	private QuizSubmittedPanel quizSubmittedPanel = new QuizSubmittedPanel();
+	private ShowQuestionsPanel showQuestionsPanel;
+	
+	public StudentDashboard getStudenDashboard() {
+		return studenDashboard;
+   	}
+  
+	public NextPanel getNextPanel() {
+		return nextPanel;
+   	}
+	
+	public QuitPanel getQuitPanel() {
+		return quitPanel;
+	}
+	
+	public QuizSubmittedPanel getQuizSubmittedPanel() {
+		return quizSubmittedPanel;
+	}
+	
+	public void displayMessage(String message) {
+		JOptionPane.showMessageDialog(this, message);
+	}
+	
+	
+	public ShowQuestionsPanel getShowQuestionsPanel() {
+		showQuestionsPanel = new ShowQuestionsPanel();
+		return showQuestionsPanel;
 	}
 
+  StudentView(){
+		this.setSize(500,400);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(studenDashboard);
+		this.setTitle("Student Dashboard");
+		this.setVisible(true);
+		
+	}
+	
 }
