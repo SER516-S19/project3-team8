@@ -24,7 +24,7 @@ import view.QuizSubmittedPanel;
 /**
  * StudentController which connects the StudentModel and 
  * StudentDashboard to display the Quiz view
- * @author appy
+ * @author Aprajita Thakur
  * @author Jainish
  * @author Sajith Thattazhi
  * @author Sami
@@ -206,33 +206,12 @@ public class StudentController {
 						nextPanel.next.setVisible(true);
 						nextPanel.submit.setVisible(false);
 					}
-<<<<<<< Updated upstream
 					group.clearSelection();
 					questionsPanel.setQuestionLabel(quizModel.resetData());
 					questionsPanel.setOptionRadioButton(quizModel.resetOptions());
 					quizView.revalidatePanel(questionsPanel, nextPanel);
 				}
-=======
-					
-					group.clearSelection();
-					quizView.getContentPane().removeAll();
-					//Reset all info.
-					JSONArray questions = quizModel.getQuestions();
-					JSONObject question = (JSONObject) questions.get(index);
-					String title = question.get("title").toString();
-					JSONArray options = (JSONArray) question.get("options");
-					String correctAnswer = question.get("correctAnswer").toString();
-					questionsPanel.setQuestionLabel(title);
-					questionsPanel.setOptionRadioButton(options);
-					System.out.println("CorrectAns:" + correctAnswer.toString());
-					quizModel.setCorrectAnswer(correctAnswer.toString());
-					quizView.repaint();
-					quizView.setLayout(new GridLayout(2, 1));
-					quizView.getContentPane().add(questionsPanel);
-					quizView.getContentPane().add(nextPanel);
-					quizView.revalidate();	
-					}
->>>>>>> Stashed changes
+
 
 			}catch(Exception error){
 				quizView.displayMessage("Please submit the quiz");
