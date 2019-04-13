@@ -12,7 +12,7 @@ Professor Side
 
 Student Side
 
-1.Aprajita thakur
+1.Aprajita Thakur
 2.Sami Malik
 3.Jainish Soni - Scrum Master
 4.Sajith Thattazhi
