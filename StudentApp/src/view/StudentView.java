@@ -20,6 +20,7 @@ public class StudentView extends JFrame{
 	private StudentDashboard  studenDashboard= new StudentDashboard();
 	private NextPanel nextPanel = new NextPanel();
 	private QuitPanel quitPanel = new QuitPanel();
+	private QuizSubmittedPanel quizSubmittedPanel = new QuizSubmittedPanel();
 	private ShowQuestionsPanel showQuestionsPanel;
 	
 	public StudentDashboard getStudenDashboard() {
@@ -34,18 +35,24 @@ public class StudentView extends JFrame{
 		return quitPanel;
 	}
 	
+	public QuizSubmittedPanel getQuizSubmittedPanel() {
+		return quizSubmittedPanel;
+	}
+	
+	
+	
 	public ShowQuestionsPanel getShowQuestionsPanel() {
 		showQuestionsPanel = new ShowQuestionsPanel();
 		return showQuestionsPanel;
 	}
-	
 
-	
   StudentView(){
 		this.setSize(500,400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(studenDashboard);
+		this.setTitle("Student Dashboard");
 		this.setVisible(true);
+		
 	}
 	
 }

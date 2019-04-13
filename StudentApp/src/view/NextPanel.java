@@ -14,10 +14,12 @@ import java.awt.event.ActionListener;
  * */
 @SuppressWarnings("serial")
 public class NextPanel extends JPanel {
-	private int index = 0; //starting index in any quiz with at least one question.	
+		
 	//This is a modification
-	JButton next = new JButton("Next");
+	public JButton next = new JButton("Next");
 	JButton quit = new JButton("Give Up");
+	public JButton submit = new JButton("Submit Quiz");
+	
 	
 	public void addNextListener(ActionListener nextListener) {
 		next.addActionListener(nextListener);
@@ -27,12 +29,17 @@ public class NextPanel extends JPanel {
 		quit.addActionListener(giveUpListener);
 	}
 	
-	public int getIndex() {
-		return index;
+	public void addSubmitListener(ActionListener submitListener) {
+		submit.addActionListener(submitListener);
 	}
+	
 	NextPanel(){
 		this.setVisible(true);
 		this.add(next);
 		this.add(quit);
+		this.add(submit);
+		submit.setVisible(false);
+		
+		
 	}
 }
