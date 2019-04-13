@@ -239,7 +239,7 @@ public class CreateQuizPanel extends JPanel {
 				|| answerCTextField.getText().isEmpty() || answerDTextField.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter all answer choices");
 		} else if (group.getSelection() == null) {
-			JOptionPane.showMessageDialog(null, "Please select the correct answer choices");
+			JOptionPane.showMessageDialog(null, "Please select the correct answer choice");
 		} else {
 			result = true;
 		}
