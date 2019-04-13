@@ -184,7 +184,7 @@ public class StudentController {
 
 
 			}catch(Exception error){
-				quizView.displayMessage("Please submit the quiz");
+				quizView.displayMessage("Please select an option");
 				error.printStackTrace();
 			}
 		}
