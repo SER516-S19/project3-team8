@@ -154,6 +154,10 @@ public class CreateQuizPanel extends JPanel {
 
 	}
 
+	/**
+	 * Method to get all the question details
+	 * @return Question question object with all the details
+	 */
 	public Question getQuizQuestions() {
 		Question questions = new Question();
 		questions.setQuestionTitle(getQuestion());
@@ -162,6 +166,9 @@ public class CreateQuizPanel extends JPanel {
 		return questions;
 	}
 
+	/**
+	 * Method to clear all the text fields and selections
+	 */
 	public void clearTextAndSelection() {
 		questionTextArea.setText("");
 		answerATextField.setText("");
@@ -183,6 +190,10 @@ public class CreateQuizPanel extends JPanel {
 		return questionTextArea.getText();
 	}
 
+	/**
+	 * Method to get all the answer options text
+	 * @return ArrayList<String> list of all the answer text
+	 */
 	public ArrayList<String> getAnswerOptions() {
 		ArrayList<String> options = new ArrayList<String>();
 		options.add(answerATextField.getText());
@@ -191,7 +202,11 @@ public class CreateQuizPanel extends JPanel {
 		options.add(answerDTextField.getText());
 		return options;
 	}
-
+	
+	/**
+	 * Method to fetch the correct answer choice text
+	 * @return String correct answer text
+	 */
 	public String getCorrectAnswerChoice() {
 		String answerChoice = null;
 		ButtonModel model = group.getSelection();
