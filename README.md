@@ -2,6 +2,14 @@
 
 Team Members
 
+Student Side
+
+1. Aprajita Thakur
+2. Sami Malik
+3. Jainish Soni - Scrum Master
+4. Sajith Thattazhi
+5. Adity Samant - Product Owner
+
 Professor Side
 
 1. Ishan Sarangi
@@ -9,14 +17,6 @@ Professor Side
 3. Vaibhav
 4. Sourabh Siddharth
 5. Viraj Talaty
-
-Student Side
-
-1.Aprajita Thakur
-2.Sami Malik
-3.Jainish Soni - Scrum Master
-4.Sajith Thattazhi
-5.Aditya Samant - Product Owner
 
 
 Instructions
