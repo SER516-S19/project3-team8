@@ -54,15 +54,7 @@ public class ProfessorApp {
 
 		if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
-//			try {
 				FileManager.getInstance().setQuizDirectoryPath(chooser.getSelectedFile());
-				//TODO: Remove below line and use it to read json
-				//FileManager.getInstance().readFile("quiz1");
-//			} catch (FileNotFoundException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
 			new ProfessorController();
 
 		} else {

@@ -39,7 +39,6 @@ public class PanelFactory {
 
 		case CreateQuiz:
 			CreateQuizPanel createQuizPanel = new CreateQuizPanel();
-			createQuizPanel.getSubmitQuizButton().addActionListener(listeners[0]);
 			return createQuizPanel;
 
 		case EditQuiz:
