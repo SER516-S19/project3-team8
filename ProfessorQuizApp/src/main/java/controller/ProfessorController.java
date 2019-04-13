@@ -47,12 +47,14 @@ public class ProfessorController {
 		setViewForPanelType(PanelType.Dashboard, listeners);
 	}
 
-	private void createButtonClicked() {
+	private void createButtonClicked() {	
+		ActionListener cancelButtonListener = e -> backButtonClicked();
+		ActionListener[] listeners = {cancelButtonListener};
+		
 		CreateQuizPanel panel = (CreateQuizPanel) setViewForPanelType(PanelType.CreateQuiz, listeners);
 		panel.getaddQuestionButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (panel.checkEntryExists()) {
-					quizNAme = panel.getQuizName();
 					questionList.add(panel.getQuizQuestions());
 					panel.clearTextAndSelection();
 				}
