@@ -141,6 +141,29 @@ public class StudentModel {
 		return isNextToLast;
 	}
 	
+	/**
+	 * checks the question displayed is the last element in the array.
+	 * @param checks size of array 
+	 * @return isLastElement 
+	  */
+	public boolean checkIsLastElement() {
+		boolean isLastElement = false;
+		if(questions.size() == 1) {
+			isLastElement = true;
+		}
+		return isLastElement;
+	}
+
+
+	/**
+	 * 
+	 * Returns the value of the array after reset
+	 * @param index current position
+	 * @return first position in array
+	  */
+	public int resetIndex(){
+		return index = 0;
+	}
 
 	
 	/**
