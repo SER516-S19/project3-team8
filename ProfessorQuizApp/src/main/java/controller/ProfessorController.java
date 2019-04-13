@@ -1,15 +1,15 @@
 package controller;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
 import model.Question;
 import model.Quiz;
 import services.PanelFactory;
 import utilities.FileManager;
+import view.CreateQuizPanel;
 import view.PanelType;
 import view.ProfessorView;
 
@@ -20,15 +20,18 @@ import view.ProfessorView;
  *
  */
 public class ProfessorController {
-
 	ProfessorView view;
+	ArrayList<Question> questionList;
+	Quiz quiz;
+	String quizNAme;
 
 	public ProfessorController() {
 		view = new ProfessorView();
+		questionList = new ArrayList<Question>();
 		setDashboardView();
 	}
 
-	private void setViewForPanelType(PanelType type, ActionListener[] listeners) {
+	private JPanel setViewForPanelType(PanelType type, ActionListener[] listeners) {
 		JPanel panel = PanelFactory.getPanel(type, listeners);
 		view.getContentPane().removeAll();
 		view.setPanel(panel);
@@ -36,30 +39,44 @@ public class ProfessorController {
 		view.validate();
 		view.repaint();
 		view.setVisible(true);
-
+		return panel;
 	}
 
 	private void setDashboardView() {
 		ActionListener createButtonListener = e -> createButtonClicked();
 		ActionListener editButtonListener = e -> editButtonClicked();
 		ActionListener[] listeners = { createButtonListener, editButtonListener };
-
 		setViewForPanelType(PanelType.Dashboard, listeners);
 	}
 
 	private void createButtonClicked() {
+		
 		ActionListener submitQuizButtonListener = e -> submitQuizButtonClicked();
 		ActionListener[] listeners = { submitQuizButtonListener };
-
-		setViewForPanelType(PanelType.CreateQuiz, listeners);
+		
+		CreateQuizPanel panel = (CreateQuizPanel) setViewForPanelType(PanelType.CreateQuiz, listeners);
+		panel.getaddQuestionButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (panel.checkEntryExists()) {
+					quizNAme = panel.getQuizName();
+					questionList.add(panel.getQuizQuestions());
+					panel.clearTextAndSelection();
+				}
+			}
+		});
 	}
-
+	
 	private void submitQuizButtonClicked() {
 		ActionListener saveQuizButtonListener = e -> saveQuizButtonClicked();
 		ActionListener[] listeners = { saveQuizButtonListener };
 		
 		setViewForPanelType(PanelType.SaveQuiz, listeners);
 	}
+	
+//	private void getQuizQuestions() {
+//		CreateQuizPanel panelView = new CreateQuizPanel();
+//		questionList.add(panelView.getQuizQuestions());
+//	}
 
 	private void editButtonClicked() {
 		ActionListener backButtonListener = e -> backButtonClicked();
@@ -79,7 +96,8 @@ public class ProfessorController {
 
 	private void saveQuizButtonClicked() {
 		try {
-			Quiz quiz = TestSetupData();
+			quiz = new Quiz(questionList);
+			quiz.setName(quizNAme);
 			FileManager manager = FileManager.getInstance();
 			manager.writeFile(quiz);
 			setDashboardView();
