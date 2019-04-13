@@ -7,13 +7,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- * StudentView which will take data from model and manipluates
+ * StudentView which will take data from model and manipulates
  * in the StudentController and display here on StudentDashboard
- * @author appy
+ * @author Aprajita Thakur
  * @author Aditya Samant
  * @author Jainish Soni
  * @author Sami
- * @version 1.0
+ * @version 1.1
  *
  */
 

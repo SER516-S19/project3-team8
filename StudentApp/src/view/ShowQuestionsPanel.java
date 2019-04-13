@@ -2,11 +2,12 @@ package view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.ButtonGroup;
+
 import org.json.simple.JSONArray;
 
 /**
