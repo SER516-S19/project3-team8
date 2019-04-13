@@ -1,24 +1,20 @@
 package app;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
 import controller.ProfessorController;
 import utilities.FileManager;
 
-
 /**
  * 
- * Professor App
+ * This is the main class for the Professor to create quiz
+ * 
  * @author ishansarangi
  * @version 0.0.1
  */
 public class ProfessorApp {
-	public static void main( String[] args ) {
+	public static void main(String[] args) {
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -32,14 +28,16 @@ public class ProfessorApp {
 	}
 
 	/**
-	 * This method prompts the user to select a location to save and retrieve quizzes
+	 * This method prompts the user to select a location to save and retrieve
+	 * quizzes
 	 */
 	private static void perormInitialSetup() {
 
-		int userInput = JOptionPane.showOptionDialog(null, "Choose the folder to save the quizzes!!!", "Hello Professor", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+		int userInput = JOptionPane.showOptionDialog(null, "Choose the folder to save the quizzes!!!",
+				"Hello Professor", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
-		if(userInput == JOptionPane.OK_OPTION){
-			showFileChooser() ;
+		if (userInput == JOptionPane.OK_OPTION) {
+			showFileChooser();
 		} else {
 			System.exit(0);
 		}
@@ -54,7 +52,7 @@ public class ProfessorApp {
 
 		if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
-				FileManager.getInstance().setQuizDirectoryPath(chooser.getSelectedFile());
+			FileManager.getInstance().setQuizDirectoryPath(chooser.getSelectedFile());
 			new ProfessorController();
 
 		} else {

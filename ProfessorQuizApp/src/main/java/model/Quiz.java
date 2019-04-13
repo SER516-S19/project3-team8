@@ -2,6 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * This is the model class for quiz
+ * 
+ * @author viraj
+ */
 public class Quiz {
 
 	private String name;

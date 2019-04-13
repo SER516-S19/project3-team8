@@ -20,6 +20,7 @@ import javax.swing.UIManager;
 
 /**
  * This class shows the view of Create Quiz
+ * 
  * @author alshasamantaray, ishansarangi
  */
 public class CreateQuizPanel extends JPanel {
@@ -79,7 +80,7 @@ public class CreateQuizPanel extends JPanel {
 
 		JLabel correctAnswerLabel = new JLabel("(Select the correct answer choice)");
 		correctAnswerLabel.setBounds(31, 75, 210, 16);
-	    correctAnswerLabel.setHorizontalAlignment(SwingConstants.CENTER);	
+		correctAnswerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(correctAnswerLabel);
 
 		JRadioButton answerARadioButton = new JRadioButton("A");
@@ -93,7 +94,7 @@ public class CreateQuizPanel extends JPanel {
 		answerATextField.setColumns(10);
 		answerATextField.setAlignmentX(CENTER_ALIGNMENT);
 		add(answerATextField);
-		
+
 		JRadioButton answerBRadioButton = new JRadioButton("B");
 		answerBRadioButton.setBounds(48, 131, 39, 23);
 		answerBRadioButton.setActionCommand("B");
@@ -133,7 +134,7 @@ public class CreateQuizPanel extends JPanel {
 		addQuestionButton.setAlignmentX(CENTER_ALIGNMENT);
 		addQuestionButton.setAlignmentY(BOTTOM_ALIGNMENT);
 		add(addQuestionButton);
-		
+
 		cancelButton = new JButton("Cancel");
 		cancelButton.setBounds(62, 256, 86, 35);
 		cancelButton.addActionListener(new ActionListener() {
@@ -143,7 +144,6 @@ public class CreateQuizPanel extends JPanel {
 			}
 		});
 		add(cancelButton);
-	
 
 		submitQuizButton = new JButton("Submit Quiz");
 		submitQuizButton.setBounds(302, 256, 120, 35);
@@ -156,6 +156,7 @@ public class CreateQuizPanel extends JPanel {
 
 	/**
 	 * Method to get all the question details
+	 * 
 	 * @return Question question object with all the details
 	 */
 	public Question getQuizQuestions() {
@@ -192,6 +193,7 @@ public class CreateQuizPanel extends JPanel {
 
 	/**
 	 * Method to get all the answer options text
+	 * 
 	 * @return ArrayList<String> list of all the answer text
 	 */
 	public ArrayList<String> getAnswerOptions() {
@@ -202,9 +204,10 @@ public class CreateQuizPanel extends JPanel {
 		options.add(answerDTextField.getText());
 		return options;
 	}
-	
+
 	/**
 	 * Method to fetch the correct answer choice text
+	 * 
 	 * @return String correct answer text
 	 */
 	public String getCorrectAnswerChoice() {
@@ -222,25 +225,22 @@ public class CreateQuizPanel extends JPanel {
 	}
 
 	/**
-	 *  Method to verify if all values exists in all fields before adding question
+	 * Method to verify if all values exists in all fields before adding question
+	 * 
 	 * @return boolean true or false
 	 */
 	public boolean checkEntryExists() {
 		boolean result = false;
 		if (getQuizName().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter a quiz name");
-		}
-		else if (getQuestion().isEmpty()) {
+		} else if (getQuestion().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter a valid question");
-		}
-		else if (answerATextField.getText().isEmpty() || answerBTextField.getText().isEmpty()
+		} else if (answerATextField.getText().isEmpty() || answerBTextField.getText().isEmpty()
 				|| answerCTextField.getText().isEmpty() || answerDTextField.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter all answer choices");
-		}
-		else if (group.getSelection() == null) {
+		} else if (group.getSelection() == null) {
 			JOptionPane.showMessageDialog(null, "Please select the correct answer choices");
-		}
-		else {
+		} else {
 			result = true;
 		}
 		return result;

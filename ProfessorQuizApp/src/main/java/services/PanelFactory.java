@@ -1,12 +1,7 @@
-/**
- * 
- */
 package services;
 
 import java.awt.event.ActionListener;
-
 import javax.swing.JPanel;
-
 import view.CreateQuizPanel;
 import view.DashboardPanel;
 import view.EditQuizPanel;
@@ -14,21 +9,18 @@ import view.PanelType;
 import view.SaveQuizPanel;
 
 /**
- * Factory class to produce different panels
+ * Factory class to create different panels
  * 
  * @author ishansarangi
- *
  */
 public class PanelFactory {
 	/**
-	 * Method which takes the panel type as argument and returns the
-	 * generated panel
+	 * Method which takes the panel type as argument and returns the generated panel
 	 * 
-	 * @param type
-	 * @param listeners
+	 * @param type The type of the panel to be created
+	 * @param listeners Action listeners
 	 * @return created panel with buttons associated with their respective listeners
 	 */
-
 	public static JPanel getPanel(PanelType type, ActionListener[] listeners) throws NullPointerException {
 		switch (type) {
 		case Dashboard:
