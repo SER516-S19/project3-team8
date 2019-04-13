@@ -1,6 +1,6 @@
 package controller;
 
-import java.awt.GridLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -10,8 +10,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+
 
 import model.StudentModel;
 import view.StudentDashboard;
@@ -24,7 +23,7 @@ import view.QuizSubmittedPanel;
 /**
  * StudentController which connects the StudentModel and 
  * StudentDashboard to display the Quiz view
- * @author appy
+ * @author Aprajita Thakur
  * @author Jainish
  * @author Sajith Thattazhi
  * @author Sami
@@ -84,22 +83,9 @@ public class StudentController {
 			try {
 				String filePath = quizModel.getFilePath();
 				quizModel.setJsonArray(filePath);
-				JSONArray questions = quizModel.getQuestions();
-				int index = quizModel.getIndex();
-
-				JSONObject question = (JSONObject) questions.get(index);
-				String title = question.get("title").toString();
-				JSONArray options = (JSONArray) question.get("options");
-				String correctAnswer = question.get("correctAnswer").toString();
-				questionsPanel.setQuestionLabel(title);
-				questionsPanel.setOptionRadioButton(options);
-				System.out.println("CorrectAns:" + correctAnswer.toString());
-				quizModel.setCorrectAnswer(correctAnswer.toString());
-				quizView.getContentPane().removeAll();
-				quizView.setLayout(new GridLayout(2, 1));
-				quizView.getContentPane().add(questionsPanel);
-				quizView.getContentPane().add(nextPanel);
-				quizView.revalidate();
+				questionsPanel.setQuestionLabel(quizModel.resetData());
+				questionsPanel.setOptionRadioButton(quizModel.resetOptions());
+				quizView.revalidatePanel(questionsPanel, nextPanel);
 			} catch(NullPointerException exc) {
 				quizView.displayMessage("File not selected");
 				exc.printStackTrace();
@@ -133,23 +119,12 @@ public class StudentController {
 						System.out.println("IsIncorrect");
 						index = quizModel.nextIndex();
 					}
-					group.clearSelection();
-					quizView.getContentPane().removeAll();
+					
 					//Reset all info.
-					JSONArray questions = quizModel.getQuestions();    
-					JSONObject question = (JSONObject) questions.get(index);
-					String title = question.get("title").toString();
-					JSONArray options = (JSONArray) question.get("options");
-					String correctAnswer = question.get("correctAnswer").toString();
-					questionsPanel.setQuestionLabel(title);
-					questionsPanel.setOptionRadioButton(options);
-					System.out.println("CorrectAns:" + correctAnswer.toString());
-					quizModel.setCorrectAnswer(correctAnswer.toString());
-					quizView.repaint();
-					quizView.setLayout(new GridLayout(2, 1));
-					quizView.getContentPane().add(questionsPanel);
-					quizView.getContentPane().add(nextPanel);
-					quizView.revalidate();
+					group.clearSelection();
+					questionsPanel.setQuestionLabel(quizModel.resetData());
+					questionsPanel.setOptionRadioButton(quizModel.resetOptions());
+					quizView.revalidatePanel(questionsPanel, nextPanel);
 			}catch(NumberFormatException ex) {
 				quizView.displayMessage("Index did not return an integer value");
 				ex.printStackTrace();
@@ -168,12 +143,8 @@ public class StudentController {
 				boolean quit = quizModel.hasGivenUp();
 				if(quit) {
 					//change current panel and add a new one.
-					quizView.getContentPane().removeAll();
-					quizView.repaint();
-					quizView.getContentPane().add(quitPanel);
-					quizView.revalidate();
-			}
-
+					quizView.revalidatePanel(quitPanel);
+				}
 			}catch(Exception error){
 				quizView.displayMessage("Error has occurred");
 				error.printStackTrace();
@@ -190,26 +161,19 @@ public class StudentController {
 					int index = quizModel.getIndex();
 					ButtonGroup group = questionsPanel.getButtonGroup();
 					String selected = group.getSelection().getActionCommand();
-					boolean isCorrect = quizModel.checkIfCorrect(index, selected);
-					System.out.println("isCorrect"+isCorrect);
+					quizModel.checkIfCorrect(index, selected);
 					boolean quizDone = quizModel.checkIfDone();
-					System.out.println("quizDone"+quizDone);
-					
 				if(quizDone) {
 					//change current panel and add a new one.
-					System.out.println("Inside Submit Listener");
-					quizView.getContentPane().removeAll();
-					quizView.repaint();
-					quizView.getContentPane().add(quizSubmitPanel);
-					quizView.revalidate();
+					quizView.revalidatePanel(quizSubmitPanel);
 				} else {
 					int numWrong = quizModel.getQuestions().size();
 					quizView.displayMessage("You have answer " + numWrong + " questions incorrectly");
 					index = quizModel.resetIndex();
 					
 					boolean isLastElement = quizModel.checkIsLastElement();
-					if(isLastElement)
-					{	nextPanel.next.setVisible(false);
+					if(isLastElement){	
+						nextPanel.next.setVisible(false);
 						nextPanel.submit.setVisible(true);
 					}
 					else {
@@ -217,27 +181,16 @@ public class StudentController {
 						nextPanel.submit.setVisible(false);
 					}
 					
-					group.clearSelection();
-					quizView.getContentPane().removeAll();
 					//Reset all info.
-					JSONArray questions = quizModel.getQuestions();
-					JSONObject question = (JSONObject) questions.get(index);
-					String title = question.get("title").toString();
-					JSONArray options = (JSONArray) question.get("options");
-					String correctAnswer = question.get("correctAnswer").toString();
-					questionsPanel.setQuestionLabel(title);
-					questionsPanel.setOptionRadioButton(options);
-					System.out.println("CorrectAns:" + correctAnswer.toString());
-					quizModel.setCorrectAnswer(correctAnswer.toString());
-					quizView.repaint();
-					quizView.setLayout(new GridLayout(2, 1));
-					quizView.getContentPane().add(questionsPanel);
-					quizView.getContentPane().add(nextPanel);
-					quizView.revalidate();	
-					}
+					group.clearSelection();
+					questionsPanel.setQuestionLabel(quizModel.resetData());
+					questionsPanel.setOptionRadioButton(quizModel.resetOptions());
+					quizView.revalidatePanel(questionsPanel, nextPanel);
+					
+				}
 
 			}catch(Exception error){
-				quizView.displayMessage("Please submit the quiz");
+				quizView.displayMessage("Please select an answer");
 				error.printStackTrace();
 			}
 		}

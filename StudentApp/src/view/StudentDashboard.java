@@ -1,19 +1,24 @@
 package view;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * StudentDashboard which displays the quiz student's
  * homepage 
- * @author appy
+ * @author Aprajita Thakur
  * @version 1.1
  *
  */
 
+@SuppressWarnings("serial")
 public class StudentDashboard extends JPanel{
 	JButton loadQuiz = new JButton("Load Quiz");
 //	JButton SubmitQuiz = new JButton("Load Quiz");
