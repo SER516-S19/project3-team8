@@ -27,7 +27,7 @@ public class DashboardPanel extends JPanel{
 		createQuizButton.setMaximumSize(new Dimension(120, 40));
 		createQuizButton.setMinimumSize(new Dimension(120, 40));
 		
-		editQuizButton = new JButton("Edit Quiz");
+		editQuizButton = new JButton("List Quiz");
 		editQuizButton.setPreferredSize(new Dimension(120, 40));
 		editQuizButton.setMaximumSize(new Dimension(120, 40));
 		editQuizButton.setMinimumSize(new Dimension(120, 40));
