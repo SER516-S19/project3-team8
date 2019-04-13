@@ -9,7 +9,6 @@ import javax.swing.JTextArea;
 import javax.swing.ButtonGroup;
 import org.json.simple.JSONArray;
 
-
 /**
 *
 * @author Sajith Thattazhi
@@ -50,6 +49,10 @@ public class ShowQuestionsPanel extends JPanel {
 		this.add(optionRadioButton4);
 	}
 
+	/**
+	 * Populates the Option Radio-buttons with the options of the question.
+	 * @param optionsArray Contains all the options for the question.
+	 */
 	public void setOptionRadioButton(JSONArray optionsArray) {
 		String option1 = optionsArray.get(0).toString();
 		String option2 = optionsArray.get(1).toString();
@@ -73,23 +76,19 @@ public class ShowQuestionsPanel extends JPanel {
 		group.add(optionRadioButton4);
 	}
 
-
-	public void setQuestionLabel(String questionLabel) {
-		//String title = questionLabel.toString();
-		this.questionLabel.setText(questionLabel);
+	/**
+	 * Populates the Question Label with the question.
+	 * @param question Contains content of the question.
+	 */
+	public void setQuestionLabel(String question) {
+		this.questionLabel.setText(question);
 	}
 	
-	public javax.swing.ButtonGroup getButtonGroup(){
+	public ButtonGroup getButtonGroup(){
 		return group;
 	}
 	
-	public javax.swing.JTextArea getQuestionLabel() {
+	public JTextArea getQuestionLabel() {
 		return questionLabel;
 	}
-	
-	
-	
-
-	
-	
 }
