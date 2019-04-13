@@ -101,6 +101,7 @@ public class StudentController {
 				quizView.getContentPane().add(nextPanel);
 				quizView.revalidate();
 			} catch(NullPointerException exc) {
+				quizView.displayMessage("File not selected");
 				exc.printStackTrace();
 			}
 		}
@@ -150,8 +151,12 @@ public class StudentController {
 					quizView.getContentPane().add(nextPanel);
 					quizView.revalidate();
 			}catch(NumberFormatException ex) {
-				System.out.println("Index did not return an integer value");
-				System.exit(0);
+				quizView.displayMessage("Index did not return an integer value");
+				ex.printStackTrace();
+			}catch(NullPointerException nE) {
+				quizView.displayMessage("Please select an option");
+				nE.printStackTrace();
+				
 			}
 		}
 
@@ -170,8 +175,8 @@ public class StudentController {
 			}
 
 			}catch(Exception error){
+				quizView.displayMessage("Error has occurred");
 				error.printStackTrace();
-				System.exit(0);
 			}
 		}
 
@@ -191,17 +196,49 @@ public class StudentController {
 					System.out.println("quizDone"+quizDone);
 					
 				if(quizDone) {
-//					//change current panel and add a new one.
+					//change current panel and add a new one.
 					System.out.println("Inside Submit Listener");
 					quizView.getContentPane().removeAll();
 					quizView.repaint();
 					quizView.getContentPane().add(quizSubmitPanel);
 					quizView.revalidate();
-				}
+				} else {
+					int numWrong = quizModel.getQuestions().size();
+					quizView.displayMessage("You have answer " + numWrong + " questions incorrectly");
+					index = quizModel.resetIndex();
+					
+					boolean isLastElement = quizModel.checkIsLastElement();
+					if(isLastElement)
+					{	nextPanel.next.setVisible(false);
+						nextPanel.submit.setVisible(true);
+					}
+					else {
+						nextPanel.next.setVisible(true);
+						nextPanel.submit.setVisible(false);
+					}
+					
+					group.clearSelection();
+					quizView.getContentPane().removeAll();
+					//Reset all info.
+					JSONArray questions = quizModel.getQuestions();
+					JSONObject question = (JSONObject) questions.get(index);
+					String title = question.get("title").toString();
+					JSONArray options = (JSONArray) question.get("options");
+					String correctAnswer = question.get("correctAnswer").toString();
+					questionsPanel.setQuestionLabel(title);
+					questionsPanel.setOptionRadioButton(options);
+					System.out.println("CorrectAns:" + correctAnswer.toString());
+					quizModel.setCorrectAnswer(correctAnswer.toString());
+					quizView.repaint();
+					quizView.setLayout(new GridLayout(2, 1));
+					quizView.getContentPane().add(questionsPanel);
+					quizView.getContentPane().add(nextPanel);
+					quizView.revalidate();	
+					}
 
 			}catch(Exception error){
+				quizView.displayMessage("Please submit the quiz");
 				error.printStackTrace();
-				System.exit(0);
 			}
 		}
 

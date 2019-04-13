@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import controller.StudentController;
 import model.StudentModel;
+import javax.swing.JOptionPane;
 
 /**
  * StudentView which will take data from model and manipluates
@@ -39,6 +40,9 @@ public class StudentView extends JFrame{
 		return quizSubmittedPanel;
 	}
 	
+	public void displayMessage(String message) {
+		JOptionPane.showMessageDialog(this, message);
+	}
 	
 	
 	public ShowQuestionsPanel getShowQuestionsPanel() {
