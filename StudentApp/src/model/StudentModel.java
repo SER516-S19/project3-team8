@@ -83,11 +83,12 @@ public class StudentModel {
 	 * */
 	public boolean checkIfCorrect(int index, String selected) {
 		boolean flag = false;
+		
 		JSONObject question  = (JSONObject) questions.get(index);
 		if(selected.equals(correctAnswer)) {
 			questions.remove(index);
-			System.out.println("Zero: "+ questions.get(0));
 			flag = true;	
+
 		}
 		return flag;
 	}
@@ -111,6 +112,8 @@ public class StudentModel {
 	public int nextIndex(){
 		return ++index;
 	}
+	
+
 	/**
 	 * Checks if student is finished with quiz.
 	 * @return isFinished 
@@ -137,6 +140,8 @@ public class StudentModel {
 		}
 		return isNextToLast;
 	}
+	
+
 	
 	/**
 	 * 

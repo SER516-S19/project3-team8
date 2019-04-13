@@ -19,6 +19,7 @@ import view.StudentView;
 import view.NextPanel;
 import view.QuitPanel;
 import view.ShowQuestionsPanel;
+import view.QuizSubmittedPanel;
 
 /**
  * StudentController which connects the StudentModel and 
@@ -26,6 +27,7 @@ import view.ShowQuestionsPanel;
  * @author appy
  * @author Jainish
  * @author Sajith Thattazhi
+ * @author Sami
  * @version 1.1
  *
  */
@@ -35,6 +37,7 @@ public class StudentController {
 	private StudentModel quizModel;
 	private NextPanel nextPanel;
 	private QuitPanel quitPanel;
+	private QuizSubmittedPanel quizSubmitPanel;
 	private StudentDashboard studentDashBoard;
 	private ShowQuestionsPanel questionsPanel;
 	private String currentFilePath;
@@ -53,7 +56,13 @@ public class StudentController {
 		nextPanel.addNextListener(new NextListener());
 
 		nextPanel.addGiveUpListener(new GiveUpListener());
+		
+		nextPanel.addSubmitListener(new SubmitListener());
+		
 		quitPanel = quizView.getQuitPanel();
+		
+		quizSubmitPanel = quizView.getQuizSubmittedPanel();
+		
 	}
 	class LoadQuizListener implements ActionListener{
 		@Override
@@ -104,10 +113,15 @@ public class StudentController {
 		public void actionPerformed(ActionEvent event) {
 			try {
 				int index = quizModel.getIndex();
-				if(quizModel.checkIsNextToLast(index)) {
+				System.out.println("index:" + index);
+				if(quizModel.checkIsNextToLast(index) ) {
+
 					//CheckIfCorrect
 					//Enter code to change last button to submit button.
-				}else {
+					nextPanel.next.setVisible(false);
+					nextPanel.submit.setVisible(true);
+					
+				}
 					//checkIfCorrect Method from StudentView goes here
 					ButtonGroup group = questionsPanel.getButtonGroup();
 					String selected = group.getSelection().getActionCommand();
@@ -119,9 +133,9 @@ public class StudentController {
 						index = quizModel.nextIndex();
 					}
 					group.clearSelection();
-					 quizView.getContentPane().removeAll();
+					quizView.getContentPane().removeAll();
 					//Reset all info.
-					JSONArray questions = quizModel.getQuestions();
+					JSONArray questions = quizModel.getQuestions();    
 					JSONObject question = (JSONObject) questions.get(index);
 					String title = question.get("title").toString();
 					JSONArray options = (JSONArray) question.get("options");
@@ -135,7 +149,6 @@ public class StudentController {
 					quizView.getContentPane().add(questionsPanel);
 					quizView.getContentPane().add(nextPanel);
 					quizView.revalidate();
-				}
 			}catch(NumberFormatException ex) {
 				System.out.println("Index did not return an integer value");
 				System.exit(0);
@@ -163,4 +176,36 @@ public class StudentController {
 		}
 
 	}
+	
+	
+	class SubmitListener implements ActionListener{	
+		public void actionPerformed(ActionEvent event) {
+			try {
+				
+					int index = quizModel.getIndex();
+					ButtonGroup group = questionsPanel.getButtonGroup();
+					String selected = group.getSelection().getActionCommand();
+					boolean isCorrect = quizModel.checkIfCorrect(index, selected);
+					System.out.println("isCorrect"+isCorrect);
+					boolean quizDone = quizModel.checkIfDone();
+					System.out.println("quizDone"+quizDone);
+					
+				if(quizDone) {
+//					//change current panel and add a new one.
+					System.out.println("Inside Submit Listener");
+					quizView.getContentPane().removeAll();
+					quizView.repaint();
+					quizView.getContentPane().add(quizSubmitPanel);
+					quizView.revalidate();
+				}
+
+			}catch(Exception error){
+				error.printStackTrace();
+				System.exit(0);
+			}
+		}
+
+	}
+	
+
 }
