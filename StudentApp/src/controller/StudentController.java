@@ -101,6 +101,7 @@ public class StudentController {
 				quizView.getContentPane().add(nextPanel);
 				quizView.revalidate();
 			} catch(NullPointerException exc) {
+				quizView.displayMessage("File not selected");
 				exc.printStackTrace();
 			}
 		}
@@ -150,8 +151,12 @@ public class StudentController {
 					quizView.getContentPane().add(nextPanel);
 					quizView.revalidate();
 			}catch(NumberFormatException ex) {
-				System.out.println("Index did not return an integer value");
-				System.exit(0);
+				quizView.displayMessage("Index did not return an integer value");
+				ex.printStackTrace();
+			}catch(NullPointerException nE) {
+				quizView.displayMessage("Please select an option");
+				nE.printStackTrace();
+				
 			}
 		}
 
@@ -170,8 +175,8 @@ public class StudentController {
 			}
 
 			}catch(Exception error){
+				quizView.displayMessage("Error has occurred");
 				error.printStackTrace();
-				System.exit(0);
 			}
 		}
 
@@ -198,7 +203,8 @@ public class StudentController {
 					quizView.getContentPane().add(quizSubmitPanel);
 					quizView.revalidate();
 				} else {
-					
+					int numWrong = quizModel.getQuestions().size();
+					quizView.displayMessage("You have answer " + numWrong + " questions incorrectly");
 					index = quizModel.resetIndex();
 					
 					boolean isLastElement = quizModel.checkIsLastElement();
@@ -231,8 +237,8 @@ public class StudentController {
 					}
 
 			}catch(Exception error){
+				quizView.displayMessage("Please submit the quiz");
 				error.printStackTrace();
-				System.exit(0);
 			}
 		}
 
