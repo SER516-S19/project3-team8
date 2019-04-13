@@ -96,20 +96,14 @@ public class StudentController {
 
 	class NextListener implements ActionListener{
 
-
 		public void actionPerformed(ActionEvent event) {
 			try {
 				int index = quizModel.getIndex();
 				System.out.println("index:" + index);
 				if(quizModel.checkIsNextToLast(index) ) {
-
-					//CheckIfCorrect
-					//Enter code to change last button to submit button.
 					nextPanel.next.setVisible(false);
-					nextPanel.submit.setVisible(true);
-					
+					nextPanel.submit.setVisible(true);	
 				}
-					//checkIfCorrect Method from StudentView goes here
 					ButtonGroup group = questionsPanel.getButtonGroup();
 					String selected = group.getSelection().getActionCommand();
 					
@@ -119,8 +113,6 @@ public class StudentController {
 						System.out.println("IsIncorrect");
 						index = quizModel.nextIndex();
 					}
-					
-					//Reset all info.
 					group.clearSelection();
 					questionsPanel.setQuestionLabel(quizModel.resetData());
 					questionsPanel.setOptionRadioButton(quizModel.resetOptions());
@@ -130,8 +122,7 @@ public class StudentController {
 				ex.printStackTrace();
 			}catch(NullPointerException nE) {
 				quizView.displayMessage("Please select an option");
-				nE.printStackTrace();
-				
+				nE.printStackTrace();				
 			}
 		}
 
@@ -153,11 +144,9 @@ public class StudentController {
 
 	}
 	
-	
 	class SubmitListener implements ActionListener{	
 		public void actionPerformed(ActionEvent event) {
-			try {
-				
+			try {	
 					int index = quizModel.getIndex();
 					ButtonGroup group = questionsPanel.getButtonGroup();
 					String selected = group.getSelection().getActionCommand();
@@ -170,7 +159,6 @@ public class StudentController {
 					int numWrong = quizModel.getQuestions().size();
 					quizView.displayMessage("You have answer " + numWrong + " questions incorrectly");
 					index = quizModel.resetIndex();
-					
 					boolean isLastElement = quizModel.checkIsLastElement();
 					if(isLastElement){	
 						nextPanel.next.setVisible(false);
@@ -180,13 +168,10 @@ public class StudentController {
 						nextPanel.next.setVisible(true);
 						nextPanel.submit.setVisible(false);
 					}
-					
-					//Reset all info.
 					group.clearSelection();
 					questionsPanel.setQuestionLabel(quizModel.resetData());
 					questionsPanel.setOptionRadioButton(quizModel.resetOptions());
 					quizView.revalidatePanel(questionsPanel, nextPanel);
-					
 				}
 
 			}catch(Exception error){
