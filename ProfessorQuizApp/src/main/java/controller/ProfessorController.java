@@ -4,25 +4,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.swing.JPanel;
+
 import model.Question;
 import model.Quiz;
 import services.PanelFactory;
 import utilities.FileManager;
 import view.CreateQuizPanel;
-import view.ListQuizPanel;
 import view.PanelType;
 import view.ProfessorView;
 
 /**
  * Controller class to manage different panels
+ * 
  * @author ishansarangi, alshasamantaray
  */
 public class ProfessorController {
-	ProfessorView view;
-	ArrayList<Question> questionList;
-	Quiz quiz;
-	String quizNAme;
+	private ProfessorView view;
+	private ArrayList<Question> questionList;
+	private Quiz quiz;
+	private String quizName;
 
 	public ProfessorController() {
 		view = new ProfessorView();
@@ -33,7 +35,7 @@ public class ProfessorController {
 	private JPanel setViewForPanelType(PanelType type, ActionListener[] listeners) {
 		JPanel panel = PanelFactory.getPanel(type, listeners);
 		view.getContentPane().removeAll();
-		view.setPanel(panel);
+		view.add(panel);
 		view.invalidate();
 		view.validate();
 		view.repaint();
@@ -47,13 +49,12 @@ public class ProfessorController {
 		ActionListener[] listeners = { createButtonListener, editButtonListener };
 		setViewForPanelType(PanelType.Dashboard, listeners);
 	}
-	
 
 	private void listQuizButtonClicked() {
 		ActionListener backButtonListener = e -> setDashboardView();
 		ActionListener[] listeners = { backButtonListener };
 		setViewForPanelType(PanelType.ListQuiz, listeners);
-		
+
 	}
 
 	private void createButtonClicked() {	
@@ -71,7 +72,7 @@ public class ProfessorController {
 		panel.getSubmitQuizButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (panel.checkEntryExists()) {
-					quizNAme = panel.getQuizName();
+					quizName = panel.getQuizName();
 					questionList.add(panel.getQuizQuestions());
 					saveQuizButtonClicked();
 					}
@@ -79,32 +80,14 @@ public class ProfessorController {
 		});
 	}
 
-	private void submitQuizButtonClicked() {
-		ActionListener saveQuizButtonListener = e -> saveQuizButtonClicked();
-		ActionListener[] listeners = { saveQuizButtonListener };
-
-		setViewForPanelType(PanelType.SaveQuiz, listeners);
-	}
-
-	private void editButtonClicked() {
-		ActionListener backButtonListener = e -> backButtonClicked();
-		ActionListener nextButtonListener = e -> nextButtonClicked();
-		ActionListener[] listeners = { backButtonListener, nextButtonListener };
-		setViewForPanelType(PanelType.EditQuiz, listeners);
-	}
-
 	private void backButtonClicked() {
 		setDashboardView();
-	}
-
-	private void nextButtonClicked() {
-		System.out.println("Next button clicked");
 	}
 
 	private void saveQuizButtonClicked() {
 		try {
 			quiz = new Quiz(questionList);
-			quiz.setName(quizNAme);
+			quiz.setName(quizName);
 			FileManager manager = FileManager.getInstance();
 			manager.writeFile(quiz);
 			setDashboardView();
