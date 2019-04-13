@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -9,9 +8,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import model.StudentModel;
 import view.StudentDashboard;
@@ -64,6 +60,8 @@ public class StudentController {
 		quizSubmitPanel = quizView.getQuizSubmittedPanel();
 		
 	}
+	
+	// Listener to load the quiz if the Load Quiz button is clicked on the StudentView
 	class LoadQuizListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -78,6 +76,8 @@ public class StudentController {
 
 		}
 	}
+	
+	// Listener to take the quiz when the Take Quiz button is clicked on the StudentView
 	class TakeQuizListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -93,7 +93,10 @@ public class StudentController {
 		}
 
 	}
-
+	
+	/* 
+	 * Listener to keep displaying the quiz until every question exists
+	 * in the json file*/
 	class NextListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent event) {
@@ -129,7 +132,10 @@ public class StudentController {
 		}
 
 	}
-
+	
+	/**
+	 * Listener for giving up the quiz
+	 * if the student wants to quit the quiz */
 	class GiveUpListener implements ActionListener{	
 		public void actionPerformed(ActionEvent event) {
 			try {
@@ -147,13 +153,17 @@ public class StudentController {
 
 	}
 	
+	/**
+	 * Listener for the submission of the quiz
+	 * created to manage nextPanel with the StudentModel
+	 * to check if all answers are given or not */
 	class SubmitListener implements ActionListener{	
 		public void actionPerformed(ActionEvent event) {
 			try {	
 					int index = quizModel.getIndex();
 					ButtonGroup group = questionsPanel.getButtonGroup();
 					String selected = group.getSelection().getActionCommand();
-					boolean isCorrect = quizModel.checkIfCorrect(index, selected);
+					quizModel.checkIfCorrect(index, selected);
 					boolean quizDone = quizModel.checkIfDone();
 					
 				if(quizDone) {

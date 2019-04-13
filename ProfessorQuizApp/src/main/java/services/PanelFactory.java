@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import view.CreateQuizPanel;
 import view.DashboardPanel;
 import view.EditQuizPanel;
+import view.ListQuizPanel;
 import view.PanelType;
 import view.SaveQuizPanel;
 
@@ -38,6 +39,11 @@ public class PanelFactory {
 			editQuizPanel.getBackButton().addActionListener(listeners[0]);
 			editQuizPanel.getNextButton().addActionListener(listeners[1]);
 			return editQuizPanel;
+
+		case ListQuiz:
+			ListQuizPanel listQuizPanel = new ListQuizPanel();
+			listQuizPanel.getBackButton().addActionListener(listeners[0]);
+			return listQuizPanel;
 
 		case SaveQuiz:
 			SaveQuizPanel saveQuizPanel = new SaveQuizPanel();
