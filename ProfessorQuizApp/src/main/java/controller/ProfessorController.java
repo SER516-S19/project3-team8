@@ -48,8 +48,6 @@ public class ProfessorController {
 	}
 
 	private void createButtonClicked() {
-		ActionListener submitQuizButtonListener = e -> submitQuizButtonClicked();
-		ActionListener[] listeners = { submitQuizButtonListener };
 		CreateQuizPanel panel = (CreateQuizPanel) setViewForPanelType(PanelType.CreateQuiz, listeners);
 		panel.getaddQuestionButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -58,6 +56,15 @@ public class ProfessorController {
 					questionList.add(panel.getQuizQuestions());
 					panel.clearTextAndSelection();
 				}
+			}
+		});
+		panel.getSubmitQuizButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (panel.checkEntryExists()) {
+					quizNAme = panel.getQuizName();
+					questionList.add(panel.getQuizQuestions());
+					saveQuizButtonClicked();
+					}
 			}
 		});
 	}
