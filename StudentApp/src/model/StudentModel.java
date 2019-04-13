@@ -63,10 +63,7 @@ public class StudentModel {
 		}
 	}
   
-  /**
-	 * getter for questions in quiz.
-	 * @return questions
-	 * */
+ 
 	public JSONArray getQuestions() {
 		return questions;
 	}
@@ -87,31 +84,17 @@ public class StudentModel {
 		return flag;
 	}
 	
-	/**
-	 * 
-	 * Returns the current value of the array
-	 * @param index current position
-	 * @return current position
-	 * */
+	
 	public int getIndex(){
 		return index;
 	}
 	
-	/**
-	 * 
-	 * Returns the next value of the array
-	 * @param index current position
-	 * @return next position
-	 * */
+	
 	public int nextIndex(){
 		return ++index;
 	}
 	
 
-	/**
-	 * Checks if student is finished with quiz.
-	 * @return isFinished 
-	 * */
 	
 	public boolean checkIfDone() {
 		if(questions.isEmpty()) {
@@ -149,12 +132,7 @@ public class StudentModel {
 	}
 
 
-	/**
-	 * 
-	 * Returns the value of the array after reset
-	 * @param index current position
-	 * @return first position in array
-	  */
+	
 	public int resetIndex(){
 		return index = 0;
 	}
@@ -179,10 +157,7 @@ public class StudentModel {
 		return options;
 	}
 	
-	/**
-	 * 
-	 * @return quit true if the user has given up.
-	 * */
+	
 	public boolean hasGivenUp() {
 		return true;
 	}
