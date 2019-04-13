@@ -16,7 +16,7 @@ public class ProfessorView extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public ProfessorView() {
-		setSize(new Dimension(423, 300));
+		setSize(new Dimension(400, 400));
 		setMinimumSize(new Dimension(400, 300));
 		getContentPane().setBounds(new Rectangle(10, 10, 10, 10));
 		getContentPane().setMinimumSize(new Dimension(2000, 2000));

@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
@@ -18,16 +16,15 @@ import model.Question;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
 
 /**
- * 
+ * This class shows the view of Create Quiz
  * @author alshasamantaray, ishansarangi
- *
  */
 public class CreateQuizPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-//	private Map<String, ArrayList<Question>> quizMap = new HashMap<String, ArrayList<Question>>();
 	private JTextField quizNameTextField, answerATextField, answerBTextField;
 	private JTextField answerCTextField, answerDTextField;
 	private JTextArea questionTextArea;
@@ -46,13 +43,9 @@ public class CreateQuizPanel extends JPanel {
 		return cancelButton;
 	}
 
-//	public Map<String, ArrayList<Question>> getQuizQuestionDetails(){
-//		return quizMap;
-//	}
-	
 	public CreateQuizPanel() {
 		setPreferredSize(new Dimension(500, 500));
-		setMinimumSize(new Dimension(100, 100));
+		setMinimumSize(new Dimension(500, 500));
 
 		group = new ButtonGroup();
 		setLayout(null);
@@ -65,22 +58,28 @@ public class CreateQuizPanel extends JPanel {
 
 		JLabel quizLabel = new JLabel("Quiz Name");
 		quizLabel.setBounds(92, 32, 69, 16);
+		quizLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(quizLabel);
 		quizNameTextField = new JTextField();
 		quizNameTextField.setBounds(166, 27, 282, 26);
 		quizNameTextField.setColumns(10);
+		quizNameTextField.setHorizontalAlignment(SwingConstants.CENTER);
 		add(quizNameTextField);
 
 		JLabel questionLabel = new JLabel("Question");
-		questionLabel.setBounds(0, 58, 57, 16);
+		questionLabel.setBounds(21, 60, 57, 16);
+		questionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(questionLabel);
 
 		questionTextArea = new JTextArea();
-		questionTextArea.setBounds(92, 58, 356, 16);
+		questionTextArea.setBorder(UIManager.getBorder("EditorPane.border"));
+		questionTextArea.setBounds(102, 60, 356, 16);
+		questionTextArea.setAlignmentX(CENTER_ALIGNMENT);
 		add(questionTextArea);
 
 		JLabel correctAnswerLabel = new JLabel("(Select the correct answer choice)");
-		correctAnswerLabel.setBounds(0, 79, 210, 16);
+		correctAnswerLabel.setBounds(31, 75, 210, 16);
+	    correctAnswerLabel.setHorizontalAlignment(SwingConstants.CENTER);	
 		add(correctAnswerLabel);
 
 		JRadioButton answerARadioButton = new JRadioButton("A");
@@ -92,7 +91,9 @@ public class CreateQuizPanel extends JPanel {
 		answerATextField = new JTextField();
 		answerATextField.setBounds(92, 100, 356, 26);
 		answerATextField.setColumns(10);
+		answerATextField.setAlignmentX(CENTER_ALIGNMENT);
 		add(answerATextField);
+		
 		JRadioButton answerBRadioButton = new JRadioButton("B");
 		answerBRadioButton.setBounds(48, 131, 39, 23);
 		answerBRadioButton.setActionCommand("B");
@@ -102,6 +103,7 @@ public class CreateQuizPanel extends JPanel {
 		answerBTextField = new JTextField();
 		answerBTextField.setBounds(92, 131, 356, 26);
 		answerBTextField.setColumns(10);
+		answerBTextField.setAlignmentX(CENTER_ALIGNMENT);
 		add(answerBTextField);
 		JRadioButton answerCRadioButton = new JRadioButton("C");
 		answerCRadioButton.setBounds(46, 165, 41, 23);
@@ -112,6 +114,7 @@ public class CreateQuizPanel extends JPanel {
 		answerCTextField = new JTextField();
 		answerCTextField.setBounds(92, 162, 356, 26);
 		answerCTextField.setColumns(10);
+		answerCTextField.setAlignmentX(CENTER_ALIGNMENT);
 		add(answerCTextField);
 		JRadioButton answerDRadioButton = new JRadioButton("D");
 		answerDRadioButton.setBounds(45, 196, 42, 23);
@@ -122,13 +125,17 @@ public class CreateQuizPanel extends JPanel {
 		answerDTextField = new JTextField();
 		answerDTextField.setBounds(92, 193, 356, 26);
 		answerDTextField.setColumns(10);
+		answerDTextField.setAlignmentX(CENTER_ALIGNMENT);
 		add(answerDTextField);
 
 		addQuestionButton = new JButton("Add Question");
-		addQuestionButton.setBounds(166, 262, 130, 29);
-
+		addQuestionButton.setBounds(166, 256, 130, 35);
+		addQuestionButton.setAlignmentX(CENTER_ALIGNMENT);
+		addQuestionButton.setAlignmentY(BOTTOM_ALIGNMENT);
+		add(addQuestionButton);
+		
 		cancelButton = new JButton("Cancel");
-		cancelButton.setBounds(62, 262, 86, 29);
+		cancelButton.setBounds(62, 256, 86, 35);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clearTextAndSelection();
@@ -136,10 +143,10 @@ public class CreateQuizPanel extends JPanel {
 			}
 		});
 		add(cancelButton);
-		add(addQuestionButton);
+	
 
 		submitQuizButton = new JButton("Submit Quiz");
-		submitQuizButton.setBounds(301, 257, 120, 40);
+		submitQuizButton.setBounds(302, 256, 120, 35);
 		submitQuizButton.setPreferredSize(new Dimension(120, 40));
 		submitQuizButton.setMaximumSize(new Dimension(86, 29));
 		submitQuizButton.setMinimumSize(new Dimension(86, 29));
@@ -153,7 +160,6 @@ public class CreateQuizPanel extends JPanel {
 		questions.setOptions(getAnswerOptions());
 		questions.setCorrectAnswer(getCorrectAnswerChoice());
 		return questions;
-//		setQuizQuestions(questions);
 	}
 
 	public void clearTextAndSelection() {
@@ -168,18 +174,6 @@ public class CreateQuizPanel extends JPanel {
 	public void clearQuizName() {
 		quizNameTextField.setText("");
 	}
-
-//	public void setQuizQuestions(Question question) {
-//		ArrayList<Question> questionList = new ArrayList<Question>();
-//		if (quizMap.size() > 0 && quizMap.get("questions") != null) {
-//			questionList = quizMap.get("questions");
-//			questionList.add(question);
-//			quizMap.put("questions", questionList);
-//		} else {
-//			questionList.add(question);
-//			quizMap.put("questions", questionList);
-//		}
-//	}
 
 	public String getQuizName() {
 		return quizNameTextField.getText();
@@ -212,19 +206,28 @@ public class CreateQuizPanel extends JPanel {
 		return answerChoice;
 	}
 
+	/**
+	 *  Method to verify if all values exists in all fields before adding question
+	 * @return boolean true or false
+	 */
 	public boolean checkEntryExists() {
 		boolean result = false;
-		if (getQuizName().isEmpty())
+		if (getQuizName().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter a quiz name");
-		else if (getQuestion().isEmpty())
+		}
+		else if (getQuestion().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter a valid question");
+		}
 		else if (answerATextField.getText().isEmpty() || answerBTextField.getText().isEmpty()
-				|| answerCTextField.getText().isEmpty() || answerDTextField.getText().isEmpty())
+				|| answerCTextField.getText().isEmpty() || answerDTextField.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter all answer choices");
-		else if (group.getSelection() == null)
+		}
+		else if (group.getSelection() == null) {
 			JOptionPane.showMessageDialog(null, "Please select the correct answer choices");
-		else
+		}
+		else {
 			result = true;
+		}
 		return result;
 	}
 }
