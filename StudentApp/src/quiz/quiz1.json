@@ -1,0 +1,34 @@
+{
+  "questions": [
+    {
+      "title": "What is the simplest model of software development paradigm?",
+      "options": [
+        "Spiral model",
+        "Iterative model",
+        "V-Model",
+        "Waterfall Model"
+      ],
+      "correctAnswer":"Spiral model"
+    },
+    {
+      "title": "Which model is not suitable for large software projects but good onefor learning and experimenting?",
+      "options": [
+        "Spiral model",
+        "Iterative model",
+        "Big Bang model",
+        "Waterfall model"
+      ],
+      "correctAnswer":"Iterative model"
+    },
+    {
+      "title": "Which is not one of the types of prototype of Prototyping Model?",
+      "options": [
+        "Horizontal Prototype ",
+        "Diagonal Prototype",
+        "Vertical Prototype",
+        "Domain Prototype"
+      ],
+      "correctAnswer":"Domain Prototype"
+    }
+  ]
+}
