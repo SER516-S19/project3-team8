@@ -9,7 +9,11 @@ public class Quiz {
 
 	public Quiz() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+
+	public Quiz(ArrayList<Question> questions) {
+		super();
+		this.questions = questions;
 	}
 
 	public String getName() {
@@ -18,11 +22,6 @@ public class Quiz {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Quiz(ArrayList<Question> questions) {
-		super();
-		this.questions = questions;
 	}
 
 	public ArrayList<Question> getQuestions() {
