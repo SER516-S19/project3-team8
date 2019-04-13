@@ -47,10 +47,11 @@ public class ProfessorController {
 		setViewForPanelType(PanelType.Dashboard, listeners);
 	}
 
+
 	private void createButtonClicked() {
 		ActionListener submitQuizButtonListener = e -> submitQuizButtonClicked();
 		ActionListener[] listeners = { submitQuizButtonListener };
-
+		
 		setViewForPanelType(PanelType.CreateQuiz, listeners);
 	}
 

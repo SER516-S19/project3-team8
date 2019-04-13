@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.GroupLayout;
@@ -16,48 +15,49 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import org.hamcrest.core.IsNull;
-
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
-
 import model.Question;
-
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 
+/**
+ * 
+ * @author alshasamantaray, ishansarangi
+ *
+ */
 public class CreateQuizPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	private static Map<String,ArrayList<Question>> quizMap = new HashMap<String,ArrayList<Question>>();
-	private static JTextField quizNameTextField,answerATextField,answerBTextField;
-	private static JTextField answerCTextField,answerDTextField;
-	private static JTextArea questionTextArea;
-	private static JButton addQuestionButton, cancelButton,submitQuizButton;
-	private static ButtonGroup group;
+	private Map<String,ArrayList<Question>> quizMap = new HashMap<String,ArrayList<Question>>();
+	private JTextField quizNameTextField,answerATextField,answerBTextField;
+	private  JTextField answerCTextField,answerDTextField;
+	private  JTextArea questionTextArea;
+	private  JButton addQuestionButton, cancelButton,submitQuizButton;
+	private  ButtonGroup group;
 	
 	public JButton getSubmitQuizButton() {
 		return submitQuizButton;
 	}
 
 	public CreateQuizPanel() {
+		setPreferredSize(new Dimension(500, 500));
+		setMinimumSize(new Dimension(100, 100));
 		
 		JLabel titleLabel = new JLabel("Create Quiz !!!");
+		titleLabel.setBounds(173, 6, 202, 27);
 		titleLabel.setFont(new Font("Georgia", Font.BOLD, 16));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
 		submitQuizButton = new JButton("Submit Quiz");
+		submitQuizButton.setBounds(326, 306, 120, 40);
 		submitQuizButton.setPreferredSize(new Dimension(120, 40));
 		submitQuizButton.setMaximumSize(new Dimension(86, 29));
 		submitQuizButton.setMinimumSize(new Dimension(86, 29));
 
 		cancelButton = new JButton("Cancel");
+		cancelButton.setBounds(68, 309, 86, 34);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clearTextAndSelection();
@@ -65,19 +65,26 @@ public class CreateQuizPanel extends JPanel{
 			}
 		});
 		quizNameTextField = new JTextField();
+		quizNameTextField.setBounds(173, 45, 271, 26);
 		quizNameTextField.setColumns(10);
 
 		JLabel quizLabel = new JLabel("Quiz Name");
+		quizLabel.setBounds(86, 50, 69, 16);
 
 		JLabel questionLabel = new JLabel("Question");
+		questionLabel.setBounds(10, 94, 57, 16);
 
 		JRadioButton answerARadioButton = new JRadioButton("A");
+		answerARadioButton.setBounds(38, 151, 41, 23);
 		answerARadioButton.setActionCommand("A");
 		JRadioButton answerBRadioButton = new JRadioButton("B");
+		answerBRadioButton.setBounds(38, 180, 39, 23);
 		answerBRadioButton.setActionCommand("B");
 		JRadioButton answerCRadioButton = new JRadioButton("C");
+		answerCRadioButton.setBounds(38, 218, 41, 23);
 		answerCRadioButton.setActionCommand("C");
 		JRadioButton answerDRadioButton = new JRadioButton("D");
+		answerDRadioButton.setBounds(38, 250, 42, 23);
 		answerDRadioButton.setActionCommand("D");
 		
 			group = new ButtonGroup();
@@ -88,22 +95,29 @@ public class CreateQuizPanel extends JPanel{
 		    
 
 		answerATextField = new JTextField();
+		answerATextField.setBounds(98, 148, 341, 26);
 		answerATextField.setColumns(10);
 
 		questionTextArea = new JTextArea();
+		questionTextArea.setBounds(125, 94, 348, 16);
 
 		answerBTextField = new JTextField();
+		answerBTextField.setBounds(98, 180, 341, 26);
 		answerBTextField.setColumns(10);
 
 		answerCTextField = new JTextField();
+		answerCTextField.setBounds(98, 215, 341, 26);
 		answerCTextField.setColumns(10);
 
 		answerDTextField = new JTextField();
+		answerDTextField.setBounds(104, 247, 335, 26);
 		answerDTextField.setColumns(10);
 
 		JLabel correctAnswerLabel = new JLabel("(Select the correct answer choice)");
+		correctAnswerLabel.setBounds(10, 120, 335, 16);
 		
 		addQuestionButton = new JButton("Add Question");
+		addQuestionButton.setBounds(172, 312, 130, 29);
 		addQuestionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (checkEntryExists()) {
@@ -112,98 +126,24 @@ public class CreateQuizPanel extends JPanel{
 				}
 			}
 		});
-
-		GroupLayout gl_panel = new GroupLayout(this);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(10)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(questionLabel)
-										.addGroup(gl_panel.createSequentialGroup()
-											.addGap(28)
-											.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-												.addComponent(answerBRadioButton)
-												.addComponent(answerARadioButton)
-												.addComponent(answerCRadioButton)
-												.addComponent(answerDRadioButton))))
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createSequentialGroup()
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_panel.createSequentialGroup()
-													.addComponent(quizLabel)
-													.addGap(18)
-													.addComponent(quizNameTextField, GroupLayout.PREFERRED_SIZE, 271, GroupLayout.PREFERRED_SIZE))
-												.addGroup(gl_panel.createSequentialGroup()
-													.addGap(39)
-													.addComponent(questionTextArea, GroupLayout.PREFERRED_SIZE, 348, GroupLayout.PREFERRED_SIZE))))
-										.addGroup(gl_panel.createSequentialGroup()
-											.addGap(18)
-											.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(answerCTextField)
-												.addComponent(answerATextField, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-												.addComponent(answerBTextField)
-												.addGroup(gl_panel.createSequentialGroup()
-													.addGap(6)
-													.addComponent(answerDTextField, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))))))
-								.addComponent(correctAnswerLabel, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(58)
-							.addComponent(cancelButton)
-							.addGap(18)
-							.addComponent(addQuestionButton)
-							.addGap(24)
-							.addComponent(submitQuizButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(163)
-							.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(104, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-					.addGap(12)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(quizNameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(quizLabel))
-					.addGap(23)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(questionLabel)
-						.addComponent(questionTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(10)
-					.addComponent(correctAnswerLabel)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(answerARadioButton)
-						.addComponent(answerATextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(answerBTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(answerBRadioButton))
-					.addGap(9)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(answerCRadioButton)
-						.addComponent(answerCTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(answerDTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(answerDRadioButton))
-					.addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(submitQuizButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-						.addComponent(addQuestionButton))
-					.addGap(20))
-		);
-		this.setLayout(gl_panel);
+		setLayout(null);
+		add(questionLabel);
+		add(answerBRadioButton);
+		add(answerARadioButton);
+		add(answerCRadioButton);
+		add(answerDRadioButton);
+		add(quizLabel);
+		add(quizNameTextField);
+		add(questionTextArea);
+		add(answerCTextField);
+		add(answerATextField);
+		add(answerBTextField);
+		add(answerDTextField);
+		add(correctAnswerLabel);
+		add(cancelButton);
+		add(addQuestionButton);
+		add(submitQuizButton);
+		add(titleLabel);
 
 	}
 	
