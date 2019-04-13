@@ -8,14 +8,14 @@ import model.StudentModel;
  * And starting the program.
  * 
  * @author Aditya Samant
- * @author Aprajita Thakur
+ * @author appy
  * 
  * */
 public class StudentAppMVC {
 	public static void main(String[] args) {
 		StudentModel model = new StudentModel();
 		StudentView view = new StudentView();
-		new StudentController(model, view);
+		StudentController controller = new StudentController(model, view);
 		
 		
 	}

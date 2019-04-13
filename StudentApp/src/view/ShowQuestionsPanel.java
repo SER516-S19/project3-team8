@@ -1,9 +1,11 @@
 package view;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.ButtonGroup;
 import org.json.simple.JSONArray;
 
@@ -18,12 +20,11 @@ import org.json.simple.JSONArray;
 
 @SuppressWarnings("serial")
 public class ShowQuestionsPanel extends JPanel {
-
 	JRadioButton optionRadioButton1;
 	JRadioButton optionRadioButton2;
 	JRadioButton optionRadioButton3;
 	JRadioButton optionRadioButton4;
-	JLabel questionLabel;
+	JTextArea questionLabel;
 	ButtonGroup group;
 
 	/**
@@ -35,7 +36,12 @@ public class ShowQuestionsPanel extends JPanel {
 		optionRadioButton2 = new JRadioButton();
 		optionRadioButton3 = new JRadioButton();
 		optionRadioButton4 = new JRadioButton();
-		questionLabel = new JLabel();
+		questionLabel = new JTextArea();
+		questionLabel.setWrapStyleWord(true);
+		questionLabel.setLineWrap(true);
+		questionLabel.setEditable(false);
+		Color color = new Color(238, 238, 238); 
+		questionLabel.setBackground(color);
 		
 		this.add(questionLabel);
 		this.add(optionRadioButton1);
@@ -77,7 +83,7 @@ public class ShowQuestionsPanel extends JPanel {
 		return group;
 	}
 	
-	public javax.swing.JLabel getQuestionLabel() {
+	public javax.swing.JTextArea getQuestionLabel() {
 		return questionLabel;
 	}
 	
