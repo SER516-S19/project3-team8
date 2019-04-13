@@ -1,17 +1,18 @@
 package view;
 
+import java.awt.GridLayout;
+
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import controller.StudentController;
-import model.StudentModel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  * StudentView which will take data from model and manipluates
  * in the StudentController and display here on StudentDashboard
  * @author appy
- * @author Aditya
- * @author Jainish
+ * @author Aditya Samant
+ * @author Jainish Soni
+ * @author Sami
  * @version 1.0
  *
  */
@@ -48,6 +49,29 @@ public class StudentView extends JFrame{
 	public ShowQuestionsPanel getShowQuestionsPanel() {
 		showQuestionsPanel = new ShowQuestionsPanel();
 		return showQuestionsPanel;
+	}
+	
+	/**
+	 * 
+	 * Used to remove redundant repeated statements in controller:
+	 * revalidatePanel methods render panel(s) onto JFrame.
+	 * */
+	public void revalidatePanel(JPanel panel) {
+		this.getContentPane().removeAll();
+		this.repaint();
+		this.setLayout(new GridLayout(2, 1));
+		this.getContentPane().add(panel);
+		this.revalidate();
+	}
+	
+	
+	public void revalidatePanel(JPanel panel, JPanel panel2) {
+		this.getContentPane().removeAll();
+		this.repaint();
+		this.setLayout(new GridLayout(2, 1));
+		this.getContentPane().add(panel);
+		this.getContentPane().add(panel2);
+		this.revalidate();
 	}
 
   StudentView(){

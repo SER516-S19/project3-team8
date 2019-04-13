@@ -1,9 +1,5 @@
 package model;
 
-import java.awt.event.ActionEvent;
-import java.io.File;
-import controller.StudentController;
-import view.StudentDashboard;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,8 +13,8 @@ import org.json.simple.parser.ParseException;
  * file and displays it in the front end.
  * 
  * @author Aditya Samant
- * @author Jainish
- * @author appy
+ * @author Jainish Soni
+ * @author Aprajita Thakur
  * @date 4/6/2019
  * @since 4/3/2019
  * */
@@ -27,7 +23,6 @@ public class StudentModel {
   
 	private JSONArray questions;
 	private boolean isFinished;
-	private boolean quit = false;
 	private int index = 0;
 	private String filePath;
 	private String correctAnswer;
@@ -84,7 +79,6 @@ public class StudentModel {
 	public boolean checkIfCorrect(int index, String selected) {
 		boolean flag = false;
 		
-		JSONObject question  = (JSONObject) questions.get(index);
 		if(selected.equals(correctAnswer)) {
 			questions.remove(index);
 			flag = true;	
@@ -164,14 +158,33 @@ public class StudentModel {
 	public int resetIndex(){
 		return index = 0;
 	}
-
+	
+	/**
+	 * The codes resetData and resetOptions resets questions array 
+	 * and allows for the data to be retrieved.
+	 * */
+	public String resetData() {
+		JSONObject question = (JSONObject) questions.get(index);
+		String title = question.get("title").toString();
+		String correctAnswer = question.get("correctAnswer").toString();
+		this.setCorrectAnswer(correctAnswer);
+		System.out.println("CorrectAns:" + correctAnswer);
+		return title;
+	}
+	
+	
+	public JSONArray resetOptions() {
+		JSONObject question = (JSONObject) questions.get(index);
+		JSONArray options = (JSONArray) question.get("options");
+		return options;
+	}
 	
 	/**
 	 * 
 	 * @return quit true if the user has given up.
 	 * */
 	public boolean hasGivenUp() {
-		return quit = true;
+		return true;
 	}
 	
 	public String getCorrectAnswer() {
