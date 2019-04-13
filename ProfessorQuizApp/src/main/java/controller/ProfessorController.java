@@ -20,11 +20,13 @@ public class ProfessorController {
 	CreateQuizPanel createQuizPanel;
 	EditQuizPanel editQuizPanel;
 	SaveQuizPanel saveQuizPanel;
+	Quiz theQuiz;
 	
 	
 	
 	
-	public ProfessorController() {
+	public ProfessorController(Quiz theQuiz) {
+		this.theQuiz = theQuiz;
 		view = new ProfessorView();
 		setDashboardView();		
 	}
