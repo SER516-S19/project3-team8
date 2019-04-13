@@ -16,8 +16,7 @@ public class DashboardPanel extends JPanel{
 	JButton createQuizButton;
 	JButton editQuizButton;
 	
-	public DashboardPanel() 
-	{
+	public DashboardPanel() {
 		
 		JLabel titleLabel = new JLabel("Welcome Professor !!!");
 		titleLabel.setFont(new Font("Georgia", Font.BOLD, 16));

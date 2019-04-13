@@ -30,8 +30,10 @@ public class StudentDashboard extends JPanel{
 		selectQuizName.setFont(new Font("Georgia",Font.BOLD,24));
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints constraint = new GridBagConstraints(); 
+		constraint.insets = new Insets(20,20,20,20);
 		constraint.gridx = 0;
 		constraint.gridy = 0;
+		
 		this.add(selectQuizName,constraint);
 		constraint.gridx = 0;
 		constraint.gridy = 20;

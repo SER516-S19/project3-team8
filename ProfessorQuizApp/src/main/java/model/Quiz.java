@@ -4,24 +4,25 @@ import java.util.ArrayList;
 
 public class Quiz {
 
-	String quizName;
-	String quizLocation;
-	ArrayList<Question> questions = new ArrayList<Question>();
+	private String name;
+	private ArrayList<Question> questions;
 
-	public String getQuizName() {
-		return quizName;
+	public Quiz() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setQuizName(String quizName) {
-		this.quizName = quizName;
+	public String getName() {
+		return name;
 	}
 
-	public String getQuizLocation() {
-		return quizLocation;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setQuizLocation(String quizLocation) {
-		this.quizLocation = quizLocation;
+	public Quiz(ArrayList<Question> questions) {
+		super();
+		this.questions = questions;
 	}
 
 	public ArrayList<Question> getQuestions() {
@@ -31,8 +32,5 @@ public class Quiz {
 	public void setQuestions(ArrayList<Question> questions) {
 		this.questions = questions;
 	}
-
-
-	
 
 }
