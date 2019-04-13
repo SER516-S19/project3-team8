@@ -16,6 +16,7 @@ import javax.swing.filechooser.FileSystemView;
 
 public class StudentDashboard extends JPanel{
 	JButton loadQuiz = new JButton("Load Quiz");
+//	JButton SubmitQuiz = new JButton("Load Quiz");
 	public JButton getLoadQuiz() {
 		return loadQuiz;
 	}

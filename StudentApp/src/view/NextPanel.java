@@ -16,8 +16,10 @@ import java.awt.event.ActionListener;
 public class NextPanel extends JPanel {
 		
 	//This is a modification
-	JButton next = new JButton("Next");
+	public JButton next = new JButton("Next");
 	JButton quit = new JButton("Give Up");
+	public JButton submit = new JButton("Submit Quiz");
+	
 	
 	public void addNextListener(ActionListener nextListener) {
 		next.addActionListener(nextListener);
@@ -27,9 +29,17 @@ public class NextPanel extends JPanel {
 		quit.addActionListener(giveUpListener);
 	}
 	
+	public void addSubmitListener(ActionListener submitListener) {
+		submit.addActionListener(submitListener);
+	}
+	
 	NextPanel(){
 		this.setVisible(true);
 		this.add(next);
 		this.add(quit);
+		this.add(submit);
+		submit.setVisible(false);
+		
+		
 	}
 }
