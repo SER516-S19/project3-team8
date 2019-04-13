@@ -64,7 +64,6 @@ public class CreateQuizPanel extends JPanel {
 		quizNameTextField = new JTextField();
 		quizNameTextField.setBounds(166, 27, 282, 26);
 		quizNameTextField.setColumns(10);
-		quizNameTextField.setHorizontalAlignment(SwingConstants.CENTER);
 		add(quizNameTextField);
 
 		JLabel questionLabel = new JLabel("Question");
