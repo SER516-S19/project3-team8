@@ -24,37 +24,25 @@ public class DashboardPanel extends JPanel {
 	public DashboardPanel() {
 
 		JLabel titleLabel = new JLabel("Welcome Professor !!!");
+		titleLabel.setBounds(109, 38, 202, 27);
 		titleLabel.setFont(new Font("Georgia", Font.BOLD, 16));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
 		createQuizButton = new JButton("Create Quiz");
+		createQuizButton.setBounds(66, 141, 120, 40);
 		createQuizButton.setPreferredSize(new Dimension(120, 40));
 		createQuizButton.setMaximumSize(new Dimension(120, 40));
 		createQuizButton.setMinimumSize(new Dimension(120, 40));
 		
 		editQuizButton = new JButton("List Quiz");
+		editQuizButton.setBounds(244, 141, 117, 40);
 		editQuizButton.setPreferredSize(new Dimension(120, 40));
 		editQuizButton.setMaximumSize(new Dimension(120, 40));
 		editQuizButton.setMinimumSize(new Dimension(120, 40));
-
-		GroupLayout gl_panel = new GroupLayout(this);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup().addGap(66)
-						.addComponent(createQuizButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(58)
-						.addComponent(editQuizButton, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup().addGap(109).addComponent(titleLabel,
-						GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
-				.createSequentialGroup().addGap(38)
-				.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE).addGap(76)
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(createQuizButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addComponent(editQuizButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))));
-		this.setLayout(gl_panel);
+		setLayout(null);
+		add(createQuizButton);
+		add(editQuizButton);
+		add(titleLabel);
 	}
 
 	public JButton getCreateQuizButton() {
