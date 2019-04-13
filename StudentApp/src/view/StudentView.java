@@ -74,7 +74,7 @@ public class StudentView extends JFrame{
 		this.revalidate();
 	}
 
-  StudentView(){
+  public StudentView(){
 		this.setSize(500,400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(studenDashboard);

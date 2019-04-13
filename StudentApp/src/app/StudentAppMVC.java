@@ -1,7 +1,8 @@
-package view;
+package app;
 
 import controller.StudentController;
 import model.StudentModel;
+import view.StudentView;
 
 /**
  * Implements MVC pattern by initializing the Model, the View and the Controller
