@@ -26,3 +26,6 @@ There are 2 jar files which can be run on any machine.
 
 2. Or to run from the command line go to the folder Executable-jar and then execute the command 
 java -jar <jarname.jar>
+
+While the maven build for the Student App has the simple json dependency present in it. The project itself will throw an error if 
+the jar file is not in the path. Please go to StudentApp/libraries and retrieve the jar file.
