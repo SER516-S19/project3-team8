@@ -8,27 +8,28 @@ import java.util.ArrayList;
  * @author viraj
  */
 public class Question {
-	String questionTitle;
+	String title;
+
 	String correctAnswer;
-	ArrayList<String> options = new ArrayList<String>();
+	ArrayList<String> options;
 
 	public Question() {
 		super();
 	}
 
-	public Question(String questionTitle, String correctAnswer, ArrayList<String> options) {
+	public Question(String title, String correctAnswer, ArrayList<String> options) {
 		super();
-		this.questionTitle = questionTitle;
+		this.title = title;
 		this.correctAnswer = correctAnswer;
 		this.options = options;
 	}
 
-	public String getQuestionTitle() {
-		return questionTitle;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setQuestionTitle(String questionTitle) {
-		this.questionTitle = questionTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getCorrectAnswer() {
