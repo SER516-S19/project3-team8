@@ -160,7 +160,7 @@ public class CreateQuizPanel extends JPanel {
 	 */
 	public Question getQuizQuestions() {
 		Question questions = new Question();
-		questions.setQuestionTitle(getQuestion());
+		questions.setTitle(getQuestion());
 		questions.setOptions(getAnswerOptions());
 		questions.setCorrectAnswer(getCorrectAnswerChoice());
 		return questions;
